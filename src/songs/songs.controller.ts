@@ -1,7 +1,12 @@
-import { Controller, Get, Put } from '@nestjs/common';
+import { Controller, Delete, Get, Put, Post } from '@nestjs/common';
 
 @Controller('songs')
 export class SongsController {
+  @Post()
+  create() {
+    return 'Create a new song!';
+  }
+
   @Get()
   findAll() {
     return 'Find all songs!';
@@ -15,5 +20,10 @@ export class SongsController {
   @Put(':id')
   update() {
     return 'Update song based on id!';
+  }
+
+  @Delete(':id')
+  Delete() {
+    return 'Delete song based on id!';
   }
 }

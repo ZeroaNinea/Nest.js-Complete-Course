@@ -1,6 +1,9 @@
 ### Get Hello World
 GET http://localhost:3000/
 
+### Create New Song
+POST http://localhost:3000/songs
+
 ### Get All Songs
 GET http://localhost:3000/songs
 
@@ -9,3 +12,6 @@ GET http://localhost:3000/songs/1
 
 ### Update Song by ID
 PUT http://localhost:3000/songs/1
+
+### Delete Song by ID
+DELETE http://localhost:3000/songs/1
