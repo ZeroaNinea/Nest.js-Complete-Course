@@ -6,8 +6,8 @@ POST http://localhost:3000/songs
 Content-Type: application/json
 
 {
-  "title": "song name",
-  "artist": "song artist",
+  "title": "lasting lover",
+  "artist": ["sigla"],
   "releasedDate": "2022-09-29",
   "duration": "02:34"
 }
