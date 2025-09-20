@@ -6,4 +6,9 @@ export class SongsController {
   findAll() {
     return 'Find all songs!';
   }
+
+  @Get(':id')
+  findOne() {
+    return 'Fetch song based on id!';
+  }
 }
