@@ -6,3 +6,6 @@ GET http://localhost:3000/songs
 
 ### Get One Song by ID
 GET http://localhost:3000/songs/1
+
+### Update Song by ID
+PUT http://localhost:3000/songs/1
