@@ -1,5 +1,5 @@
-# Get Hello World
+### Get Hello World
 GET http://localhost:3000/
 
-# Get all songs
+### Get All Songs
 GET http://localhost:3000/songs
