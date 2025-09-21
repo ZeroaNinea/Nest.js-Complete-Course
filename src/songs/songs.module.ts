@@ -4,7 +4,7 @@ import { SongsService } from './songs.service';
 
 const mockSongsService = {
   findAll() {
-    return [{ id: 1, title: 'Lasting lover' }];
+    return [{ id: 1, title: 'Lasting lover', artists: ['Siagla'] }];
   },
 };
 
