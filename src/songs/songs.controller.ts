@@ -7,6 +7,8 @@ import {
   Body,
   HttpException,
   HttpStatus,
+  Param,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { SongsService } from './songs.service';
 import { CreateSongDto } from './dto/create-song.dto';
@@ -36,8 +38,8 @@ export class SongsController {
   }
 
   @Get(':id')
-  findOne() {
-    return 'Fetch song based on id!';
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    return `Fetch song based on ID: ${typeof id}`;
   }
 
   @Put(':id')
