@@ -2,6 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { Song } from 'src/common/interface/song.interface';
 
 @Injectable()
+// {
+//   scope: Scope.TRANSIENT,
+// }
 export class SongsService {
   private readonly songs: Song[] = [];
 
