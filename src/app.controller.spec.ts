@@ -5,7 +5,7 @@ import { AppService } from './app.service';
 import { DevConfigService } from './common/services/dev-config/dev-config.service';
 
 const devConfig = { port: 3000 };
-const proConfig = { port: 400 };
+const proConfig = { port: 4000 };
 
 describe('AppController', () => {
   let appController: AppController;

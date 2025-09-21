@@ -13,7 +13,7 @@ import { SongsController } from './songs/songs.controller';
 import { DevConfigService } from './common/services/dev-config/dev-config.service';
 
 const devConfig = { port: 3000 };
-const proConfig = { port: 400 };
+const proConfig = { port: 4000 };
 
 @Module({
   imports: [SongsModule],
