@@ -11,12 +11,13 @@ import { SongsModule } from './songs/songs.module';
 import { LoggerMiddleware } from './common/middleware/logger/logger.middleware';
 import { SongsController } from './songs/songs.controller';
 import { DevConfigService } from './common/services/dev-config/dev-config.service';
+import { PlayListModule } from './play-list/play-list.module';
 
 const devConfig = { port: 3000 };
 const proConfig = { port: 4000 };
 
 @Module({
-  imports: [SongsModule],
+  imports: [SongsModule, PlayListModule],
   controllers: [AppController],
   providers: [
     AppService,
