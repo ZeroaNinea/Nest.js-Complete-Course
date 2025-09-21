@@ -9,6 +9,6 @@ export class AppService {
   ) {}
 
   getHello(): string {
-    return `Hello World! ${this.devConfigService.getDBHost()}`;
+    return `Hello World! ${this.devConfigService.getDBHost()} ${this.config.port}`;
   }
 }

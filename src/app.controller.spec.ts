@@ -33,7 +33,11 @@ describe('AppController', () => {
   describe('root', () => {
     it('should return "Hello World!"', () => {
       expect(appController.getHello()).toBe(
-        `Hello World! ${new DevConfigService().getDBHost()}`,
+        `Hello World! ${new DevConfigService().getDBHost()} ${
+          process.env.NODE_ENV === 'development'
+            ? devConfig.port
+            : proConfig.port
+        }`,
       );
     });
   });
