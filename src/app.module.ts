@@ -10,11 +10,13 @@ import { AppService } from './app.service';
 import { SongsModule } from './songs/songs.module';
 import { LoggerMiddleware } from './common/middleware/logger/logger.middleware';
 import { SongsController } from './songs/songs.controller';
+import { ProvidersService } from './dev-config/common/providers/providers.service';
+import { ProvidersService } from './dev-config/common/providers/providers.service';
 
 @Module({
   imports: [SongsModule],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, ProvidersService],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
