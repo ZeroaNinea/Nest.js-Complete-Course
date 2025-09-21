@@ -15,7 +15,7 @@ export class CreateSongDto {
   // @IsString()
   @IsNotEmpty()
   @IsArray()
-  readonly artist: string;
+  readonly artists: [string];
 
   @IsDate()
   @Type(() => Date)
