@@ -23,13 +23,16 @@ const proConfig = { port: 4000 };
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true, validationSchema: Joi.object({
-      DB_HOST: Joi.string().required(),
-      DB_PORT: Joi.number().required(),
-      DB_USERNAME: Joi.string().required(),
-      DB_PASSWORD: Joi.string().required(),
-      DB_NAME: Joi.string().required(),
-    }) }),
+    ConfigModule.forRoot({
+      isGlobal: true,
+      validationSchema: Joi.object({
+        DB_HOST: Joi.string().required(),
+        DB_PORT: Joi.number().required(),
+        DB_USERNAME: Joi.string().required(),
+        DB_PASSWORD: Joi.string().required(),
+        DB_NAME: Joi.string().required(),
+      }),
+    }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
@@ -43,7 +46,7 @@ const proConfig = { port: 4000 };
         autoLoadEntities: true,
         synchronize: true,
         entities: [Song],
-      })
+      }),
     }),
     SongsModule,
   ],

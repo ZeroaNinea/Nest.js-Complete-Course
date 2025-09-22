@@ -1,5 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { Song } from '../common/interface/song.interface';
+import { Repository } from 'typeorm';
+
+import { Song } from '../common/entities/song.entity';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 // {
@@ -7,6 +10,11 @@ import { Song } from '../common/interface/song.interface';
 // }
 export class SongsService {
   private readonly songs: Song[] = [];
+
+  constructor(
+    @InjectRepository(Song)
+    private songsRepository: Repository<Song>,
+  ) {}
 
   create(song: Song) {
     this.songs.push(song);

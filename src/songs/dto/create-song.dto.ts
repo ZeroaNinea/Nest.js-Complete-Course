@@ -5,9 +5,14 @@ import {
   IsArray,
   IsDate,
   IsMilitaryTime,
+  IsNumber,
 } from 'class-validator';
 
 export class CreateSongDto {
+  @IsNotEmpty()
+  @IsNumber()
+  id: number;
+
   @IsString()
   @IsNotEmpty()
   readonly title: string;
