@@ -19,6 +19,7 @@ import { Song } from '../common/entities/song.entity';
 
 import { SongsService } from './songs.service';
 import { CreateSongDto } from './dto/create-song.dto';
+import { UpdateSongDto } from './dto/update-song.dto';
 
 import type { Connection } from '../common/constants/connection';
 
@@ -68,8 +69,11 @@ export class SongsController {
   }
 
   @Put(':id')
-  update() {
-    return 'Update song based on id!';
+  async update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateSongDto: UpdateSongDto,
+  ) {
+    return await this.songsService.update(id, updateSongDto);
   }
 
   @Delete(':id')
