@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Song } from 'src/common/interface/song.interface';
+import { Song } from '../common/interface/song.interface';
 
 @Injectable()
 // {

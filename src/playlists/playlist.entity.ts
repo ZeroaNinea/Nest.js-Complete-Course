@@ -6,7 +6,7 @@ import {
   ManyToOne,
 } from 'typeorm';
 import { Song } from '../songs/song.entity';
-import { User } from 'src/users/user.entity';
+import { User } from '../users/user.entity';
 
 @Entity('playlists')
 export class Playlist {
