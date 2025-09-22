@@ -25,12 +25,12 @@ docker run --name postgres \
 Run the container again to restart the database:
 
 ```bash
-docker start -a postgres
+docker start postgres
 
 ```
 
 ```bash
-docker stop -a postgres
+docker stop postgres
 
 ```
 
