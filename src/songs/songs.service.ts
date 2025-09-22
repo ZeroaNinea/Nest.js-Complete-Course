@@ -1,7 +1,7 @@
 import { HttpException, Injectable, HttpStatus } from '@nestjs/common';
 
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { DeleteResult, Repository } from 'typeorm';
 
 import { Song } from '../common/entities/song.entity';
 import { CreateSongDto } from './dto/create-song.dto';
@@ -42,5 +42,9 @@ export class SongsService {
     }
 
     return song;
+  }
+
+  remove(id: number): Promise<DeleteResult> {
+    return this.songsRepository.delete(id);
   }
 }

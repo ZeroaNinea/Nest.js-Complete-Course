@@ -13,6 +13,8 @@ import {
   // Scope,
 } from '@nestjs/common';
 
+import { DeleteResult } from 'typeorm';
+
 import { Song } from '../common/entities/song.entity';
 
 import { SongsService } from './songs.service';
@@ -63,7 +65,6 @@ export class SongsController {
     id: number,
   ): Promise<Song> {
     return await this.songsService.findOne(id);
-    // return `Fetch song based on ID: ${typeof id}`;
   }
 
   @Put(':id')
@@ -72,7 +73,7 @@ export class SongsController {
   }
 
   @Delete(':id')
-  Delete() {
-    return 'Delete song based on id!';
+  async delete(@Param('id') id: number): Promise<DeleteResult> {
+    return await this.songsService.remove(id);
   }
 }
