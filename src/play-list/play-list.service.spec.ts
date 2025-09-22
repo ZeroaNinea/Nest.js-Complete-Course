@@ -16,12 +16,8 @@ describe('PlayListService', () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [
         TypeOrmModule.forRoot({
-              type: 'postgres',
-              database: 'spotify-clone',
-              host: 'localhost',
-              port: 5432,
-              username: 'postgres',
-              password: 'password',
+              type: 'sqlite',
+              database: ':memory:',
               entities: [Song, Artist, User, Playlist],
               synchronize: true,
             }),
