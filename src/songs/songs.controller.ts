@@ -73,7 +73,7 @@ export class SongsController {
   }
 
   @Delete(':id')
-  async delete(@Param('id') id: number): Promise<DeleteResult> {
+  async delete(@Param('id', ParseIntPipe) id: number): Promise<DeleteResult> {
     return await this.songsService.remove(id);
   }
 }
