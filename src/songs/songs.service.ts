@@ -38,7 +38,7 @@ export class SongsService {
     const song = await this.songsRepository.findOneBy({ id });
 
     if (!song) {
-      throw new HttpException('Song not found', HttpStatus.NOT_FOUND);
+      throw new HttpException('Song not found.', HttpStatus.NOT_FOUND);
     }
 
     return song;
