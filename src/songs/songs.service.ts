@@ -1,10 +1,11 @@
 import { HttpException, Injectable, HttpStatus } from '@nestjs/common';
 
 import { InjectRepository } from '@nestjs/typeorm';
-import { DeleteResult, Repository } from 'typeorm';
+import { DeleteResult, Repository, UpdateResult } from 'typeorm';
 
 import { Song } from '../common/entities/song.entity';
 import { CreateSongDto } from './dto/create-song.dto';
+import { UpdateSongDto } from './dto/update-song.dto';
 
 @Injectable()
 // {
@@ -46,5 +47,9 @@ export class SongsService {
 
   remove(id: number): Promise<DeleteResult> {
     return this.songsRepository.delete(id);
+  }
+
+  update(id: number, recordToUpdate: UpdateSongDto): Promise<UpdateResult> {
+    return this.songsRepository.update(id, recordToUpdate);
   }
 }
