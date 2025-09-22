@@ -55,14 +55,15 @@ export class SongsController {
   }
 
   @Get(':id')
-  findOne(
+  async findOne(
     @Param(
       'id',
       new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
     )
     id: number,
-  ) {
-    return `Fetch song based on ID: ${typeof id}`;
+  ): Promise<Song> {
+    return await this.songsService.findOne(id);
+    // return `Fetch song based on ID: ${typeof id}`;
   }
 
   @Put(':id')
