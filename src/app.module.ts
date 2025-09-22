@@ -15,11 +15,6 @@ import { SongsModule } from './songs/songs.module';
 import { LoggerMiddleware } from './common/middleware/logger/logger.middleware';
 import { SongsController } from './songs/songs.controller';
 import { DevConfigService } from './common/services/dev-config/dev-config.service';
-import { PlayListModule } from './play-list/play-list.module';
-import { Song } from './songs/song.entity';
-import { Artist } from './artists/artist.entity';
-import { User } from './users/user.entity';
-import { Playlist } from './playlists/playlist.entity';
 import { DataSource } from 'typeorm';
 
 
@@ -48,11 +43,10 @@ const proConfig = { port: 4000 };
         database: configService.get<string>('DB_NAME'),
         autoLoadEntities: true,
         synchronize: true,
-        entities: [Song, Artist, User, Playlist],
+        entities: [],
       })
     }),
     SongsModule,
-    PlayListModule,
   ],
   controllers: [AppController],
   providers: [
