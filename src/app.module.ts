@@ -17,8 +17,6 @@ import { SongsController } from './songs/songs.controller';
 import { DevConfigService } from './common/services/dev-config/dev-config.service';
 import { DataSource } from 'typeorm';
 
-
-
 const devConfig = { port: 3000 };
 const proConfig = { port: 4000 };
 
