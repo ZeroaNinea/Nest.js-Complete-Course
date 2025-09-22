@@ -6,6 +6,7 @@ import {
 } from '@nestjs/common';
 
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -19,20 +20,27 @@ import { Artist } from './artists/artist.entity';
 import { User } from './users/user.entity';
 import { Playlist } from './playlists/playlist.entity';
 
+
 const devConfig = { port: 3000 };
 const proConfig = { port: 4000 };
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      database: 'spotify-clone',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: 'password',
-      entities: [Song, Artist, User, Playlist],
-      synchronize: true,
+    ConfigModule.forRoot({ isGlobal: true }),
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => ({
+        type: 'postgres',
+        host: configService.get<string>('DB_HOST'),
+        port: configService.get<number>('DB_PORT'),
+        username: configService.get<string>('DB_USERNAME'),
+        password: configService.get<string>('DB_PASSWORD'),
+        database: configService.get<string>('DB_NAME'),
+        autoLoadEntities: true,
+        synchronize: true,
+        entities: [Song, Artist, User, Playlist],
+      })
     }),
     SongsModule,
     PlayListModule,
