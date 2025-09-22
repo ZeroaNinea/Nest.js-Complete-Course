@@ -5,12 +5,10 @@ import {
   IsArray,
   IsDate,
   IsMilitaryTime,
-  IsNumber,
 } from 'class-validator';
 
 export class CreateSongDto {
-  @IsNotEmpty()
-  @IsNumber()
+  @Type(() => Number)
   id: number;
 
   @IsString()

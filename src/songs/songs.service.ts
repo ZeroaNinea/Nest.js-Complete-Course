@@ -1,8 +1,10 @@
 import { Injectable } from '@nestjs/common';
+
+import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import { Song } from '../common/entities/song.entity';
-import { InjectRepository } from '@nestjs/typeorm';
+import { CreateSongDto } from './dto/create-song.dto';
 
 @Injectable()
 // {
@@ -16,9 +18,16 @@ export class SongsService {
     private songsRepository: Repository<Song>,
   ) {}
 
-  create(song: Song) {
-    this.songs.push(song);
-    return this.songs;
+  create(song: CreateSongDto): Promise<Song> {
+    const newSong = new Song();
+
+    newSong.title = song.title;
+    newSong.artists = song.artists;
+    newSong.releasedDate = song.releasedDate;
+    newSong.duration = song.duration;
+    newSong.lyrics = song.lyrics;
+
+    return this.songsRepository.save(newSong);
   }
 
   findAll() {

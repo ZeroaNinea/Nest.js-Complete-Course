@@ -12,6 +12,9 @@ import {
   Inject,
   // Scope,
 } from '@nestjs/common';
+
+import { Song } from '../common/entities/song.entity';
+
 import { SongsService } from './songs.service';
 import { CreateSongDto } from './dto/create-song.dto';
 
@@ -32,7 +35,7 @@ export class SongsController {
   }
 
   @Post()
-  create(@Body() CreateSongDto: CreateSongDto) {
+  create(@Body() CreateSongDto: CreateSongDto): Promise<Song> {
     return this.songsService.create(CreateSongDto);
   }
 

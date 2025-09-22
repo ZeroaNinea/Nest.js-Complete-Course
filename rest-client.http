@@ -9,7 +9,8 @@ Content-Type: application/json
   "title": "lasting lover",
   "artists": ["sigla", "Martin", "John"],
   "releasedDate": "2022-09-29",
-  "duration": "02:34"
+  "duration": "02:34",
+  "lyrics": "I'm your last lover."
 }
 
 ### Get All Songs
