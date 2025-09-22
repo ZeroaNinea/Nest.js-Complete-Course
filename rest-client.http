@@ -6,9 +6,9 @@ POST http://localhost:3000/songs
 Content-Type: application/json
 
 {
-  "title": "lasting lover 4",
+  "title": "lasting lover 5",
   "artists": ["sigla", "Martin", "John"],
-  "releasedDate": "2022-09-29",
+  "releasedDate": "2023-09-29",
   "duration": "02:34",
   "lyrics": "I'm your last lover."
 }
