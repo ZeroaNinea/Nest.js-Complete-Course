@@ -10,6 +10,30 @@ npm run start:dev
 
 ```
 
+## Deploy PostgreSQL Database
+
+```bash
+docker run --name postgres \
+  -e POSTGRES_USER=postgres \
+  -e POSTGRES_PASSWORD=password \
+  -e POSTGRES_DB=postgres \
+  -p 5432:5432 \
+  -d spotify-clone
+
+```
+
+Run the container again to restart the database:
+
+```bash
+docker start -a postgres
+
+```
+
+```bash
+docker stop -a postgres
+
+```
+
 ## Resources
 
 - **[Nest.js Documentation](https://docs.nestjs.com/)**
