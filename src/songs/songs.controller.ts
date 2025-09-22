@@ -13,7 +13,7 @@ import {
   // Scope,
 } from '@nestjs/common';
 
-import { DeleteResult } from 'typeorm';
+import { DeleteResult, UpdateResult } from 'typeorm';
 
 import { Song } from '../common/entities/song.entity';
 
@@ -72,7 +72,7 @@ export class SongsController {
   async update(
     @Param('id', ParseIntPipe) id: number,
     @Body() updateSongDto: UpdateSongDto,
-  ) {
+  ): Promise<UpdateResult> {
     return await this.songsService.update(id, updateSongDto);
   }
 

@@ -20,7 +20,16 @@ GET http://localhost:3000/songs
 GET http://localhost:3000/songs/2
 
 ### Update Song by ID
-PUT http://localhost:3000/songs/1
+PUT http://localhost:3000/songs/2
+Content-Type: application/json
+
+{
+  "title": "lasting lover",
+  "artists": ["sigla", "Martin", "John"],
+  "releasedDate": "2022-09-29",
+  "duration": "02:34",
+  "lyrics": "I'm your last lover."
+}
 
 ### Delete Song by ID
 DELETE http://localhost:3000/songs/1
