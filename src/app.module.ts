@@ -16,6 +16,7 @@ import { LoggerMiddleware } from './common/middleware/logger/logger.middleware';
 import { SongsController } from './songs/songs.controller';
 import { DevConfigService } from './common/services/dev-config/dev-config.service';
 import { DataSource } from 'typeorm';
+import { Song } from './common/entities/song.entity';
 
 const devConfig = { port: 3000 };
 const proConfig = { port: 4000 };
@@ -41,7 +42,7 @@ const proConfig = { port: 4000 };
         database: configService.get<string>('DB_NAME'),
         autoLoadEntities: true,
         synchronize: true,
-        entities: [],
+        entities: [Song],
       })
     }),
     SongsModule,
