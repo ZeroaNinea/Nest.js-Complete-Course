@@ -6,7 +6,7 @@ POST http://localhost:3000/songs
 Content-Type: application/json
 
 {
-  "title": "lasting lover",
+  "title": "lasting lover 4",
   "artists": ["sigla", "Martin", "John"],
   "releasedDate": "2022-09-29",
   "duration": "02:34",
@@ -14,7 +14,7 @@ Content-Type: application/json
 }
 
 ### Get All Songs
-GET http://localhost:3000/songs
+GET http://localhost:3000/songs?page=1&limit=2
 
 ### Get One Song by ID
 GET http://localhost:3000/songs/2

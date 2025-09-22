@@ -1,5 +1,11 @@
 import { HttpException, Injectable, HttpStatus } from '@nestjs/common';
 
+import {
+  IPaginationOptions,
+  Pagination,
+  paginate,
+} from 'nestjs-typeorm-paginate';
+
 import { InjectRepository } from '@nestjs/typeorm';
 import { DeleteResult, Repository, UpdateResult } from 'typeorm';
 
@@ -51,5 +57,9 @@ export class SongsService {
 
   update(id: number, recordToUpdate: UpdateSongDto): Promise<UpdateResult> {
     return this.songsRepository.update(id, recordToUpdate);
+  }
+
+  async paginate(options: IPaginationOptions): Promise<Pagination<Song>> {
+    return await paginate<Song>(this.songsRepository, options);
   }
 }

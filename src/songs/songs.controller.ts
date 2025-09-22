@@ -5,13 +5,17 @@ import {
   Put,
   Post,
   Body,
-  HttpException,
+  // HttpException,
   HttpStatus,
   Param,
   ParseIntPipe,
   Inject,
+  DefaultValuePipe,
+  Query,
   // Scope,
 } from '@nestjs/common';
+
+import { IPaginationMeta, Pagination } from 'nestjs-typeorm-paginate';
 
 import { DeleteResult, UpdateResult } from 'typeorm';
 
@@ -43,18 +47,12 @@ export class SongsController {
   }
 
   @Get()
-  findAll(): Promise<Song[]> {
-    try {
-      return this.songsService.findAll();
-    } catch (error) {
-      throw new HttpException(
-        'Error during fetching songs.',
-        HttpStatus.INTERNAL_SERVER_ERROR,
-        {
-          cause: error,
-        },
-      );
-    }
+  findAll(
+    @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number = 1,
+    @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number = 10,
+  ): Promise<Pagination<Song, IPaginationMeta>> {
+    limit = limit > 100 ? 100 : limit;
+    return this.songsService.paginate({ page, limit });
   }
 
   @Get(':id')
