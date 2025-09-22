@@ -30,8 +30,7 @@ export class SongsService {
     return this.songsRepository.save(newSong);
   }
 
-  findAll() {
-    throw new Error('Error during fetching songs.');
-    return this.songs;
+  findAll(): Promise<Song[]> {
+    return this.songsRepository.find();
   }
 }
