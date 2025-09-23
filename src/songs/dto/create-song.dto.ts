@@ -5,7 +5,10 @@ import {
   IsArray,
   IsDate,
   IsMilitaryTime,
+  IsNumber,
 } from 'class-validator';
+
+import { Artist } from '../../common/entities/artist.entity';
 
 export class CreateSongDto {
   @Type(() => Number)
@@ -18,7 +21,8 @@ export class CreateSongDto {
   // @IsString()
   @IsNotEmpty()
   @IsArray()
-  readonly artists: [string];
+  @IsNumber({}, { each: true })
+  readonly artists: [Artist];
 
   @IsDate()
   @Type(() => Date)

@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { SongsService } from './songs.service';
 import { Song } from '../common/entities/song.entity';
+import { Artist } from '../common/entities/artist.entity';
 
 describe('SongsService', () => {
   let service: SongsService;
@@ -13,10 +14,10 @@ describe('SongsService', () => {
         TypeOrmModule.forRoot({
           type: 'sqlite',
           database: ':memory:',
-          entities: [Song],
+          // entities: [Song],
           synchronize: true,
         }),
-        TypeOrmModule.forFeature([Song]),
+        TypeOrmModule.forFeature([Song, Artist]),
       ],
       providers: [SongsService],
     }).compile();

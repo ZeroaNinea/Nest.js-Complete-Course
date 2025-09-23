@@ -2,6 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { Song } from '../common/entities/song.entity';
+import { Artist } from '../common/entities/artist.entity';
 
 import { SongsController } from './songs.controller';
 import { SongsService } from './songs.service';
@@ -16,10 +17,10 @@ describe('SongsController', () => {
         TypeOrmModule.forRoot({
           type: 'sqlite',
           database: ':memory:',
-          entities: [Song],
+          // entities: [Song, Artist],
           synchronize: true,
         }),
-        TypeOrmModule.forFeature([Song]),
+        TypeOrmModule.forFeature([Song, Artist]),
       ],
       controllers: [SongsController],
       providers: [
