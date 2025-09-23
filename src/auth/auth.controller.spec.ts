@@ -3,7 +3,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AuthController } from './auth.controller';
 import { User } from '../common/entities/user.entity';
+
 import { UserService } from '../user/user.service';
+import { AuthService } from './auth.service';
 
 describe('AuthController', () => {
   let controller: AuthController;
@@ -20,7 +22,7 @@ describe('AuthController', () => {
         TypeOrmModule.forFeature([User]),
       ],
       controllers: [AuthController],
-      providers: [UserService],
+      providers: [UserService, AuthService],
     }).compile();
 
     controller = module.get<AuthController>(AuthController);
