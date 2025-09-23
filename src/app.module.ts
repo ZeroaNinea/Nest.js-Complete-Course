@@ -21,6 +21,7 @@ import { LoggerMiddleware } from './common/middleware/logger/logger.middleware';
 import { SongsController } from './songs/songs.controller';
 import { DevConfigService } from './common/services/dev-config/dev-config.service';
 import { AuthModule } from './auth/auth.module';
+import { UserModule } from './user/user.module';
 
 const devConfig = { port: 3000 };
 const proConfig = { port: 4000 };
@@ -54,6 +55,7 @@ const proConfig = { port: 4000 };
     }),
     SongsModule,
     AuthModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [
