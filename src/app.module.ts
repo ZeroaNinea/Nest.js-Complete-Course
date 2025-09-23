@@ -4,10 +4,15 @@ import {
   NestModule,
   // RequestMethod,
 } from '@nestjs/common';
-
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import Joi from 'joi';
+
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { DataSource } from 'typeorm';
+
+import { Song } from './common/entities/song.entity';
+import { Artist } from './common/entities/artist.entity';
+import { User } from './common/entities/user.entity';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -15,8 +20,6 @@ import { SongsModule } from './songs/songs.module';
 import { LoggerMiddleware } from './common/middleware/logger/logger.middleware';
 import { SongsController } from './songs/songs.controller';
 import { DevConfigService } from './common/services/dev-config/dev-config.service';
-import { DataSource } from 'typeorm';
-import { Song } from './common/entities/song.entity';
 
 const devConfig = { port: 3000 };
 const proConfig = { port: 4000 };
@@ -45,7 +48,7 @@ const proConfig = { port: 4000 };
         database: configService.get<string>('DB_NAME'),
         autoLoadEntities: true,
         synchronize: true,
-        entities: [Song],
+        entities: [Song, Artist, User],
       }),
     }),
     SongsModule,
