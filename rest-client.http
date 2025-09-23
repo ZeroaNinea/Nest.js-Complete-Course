@@ -33,3 +33,14 @@ Content-Type: application/json
 
 ### Delete Song by ID
 DELETE http://localhost:3000/songs/1
+
+### Signup User
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "john@example.com",
+  "password": "12345"
+}
