@@ -30,7 +30,7 @@ export class UpdateSongDto {
 
   @IsMilitaryTime()
   @IsOptional()
-  readonly duration: Date;
+  readonly duration: string;
 
   @IsString()
   @IsOptional()

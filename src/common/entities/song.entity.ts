@@ -16,15 +16,15 @@ export class Song {
   @Column()
   title: string;
 
-  @ManyToMany(() => Artist, (artist) => artist.songs, { cascade: true })
   @JoinTable({ name: 'songs_artists' })
+  @ManyToMany(() => Artist, (artist) => artist.songs, { cascade: true })
   artists: Artist[];
 
   @Column('date')
   releasedDate: Date;
 
   @Column('time')
-  duration: Date;
+  duration: string;
 
   @Column('text')
   lyrics: string;

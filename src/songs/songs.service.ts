@@ -7,7 +7,7 @@ import {
 } from 'nestjs-typeorm-paginate';
 
 import { InjectRepository } from '@nestjs/typeorm';
-import { DeleteResult, Repository, UpdateResult } from 'typeorm';
+import { DeleteResult, In, Repository, UpdateResult } from 'typeorm';
 
 import { Song } from '../common/entities/song.entity';
 import { Artist } from '../common/entities/artist.entity';
@@ -37,7 +37,10 @@ export class SongsService {
     newSong.duration = song.duration;
     newSong.lyrics = song.lyrics;
 
-    const artists = await this.artistRepository.findByIds(song.artists);
+    const artists = await this.artistRepository.findBy({
+      id: In(song.artists),
+    });
+
     newSong.artists = artists;
 
     return this.songsRepository.save(newSong);

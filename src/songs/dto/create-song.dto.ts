@@ -31,7 +31,7 @@ export class CreateSongDto {
 
   @IsMilitaryTime()
   @IsNotEmpty()
-  readonly duration: Date;
+  readonly duration: string;
 
   @IsString()
   @IsNotEmpty()
