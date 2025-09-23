@@ -29,14 +29,16 @@ export class SongsService {
     private artistRepository: Repository<Artist>,
   ) {}
 
-  create(song: CreateSongDto): Promise<Song> {
+  async create(song: CreateSongDto): Promise<Song> {
     const newSong = new Song();
 
     newSong.title = song.title;
-    newSong.artists = song.artists;
     newSong.releasedDate = song.releasedDate;
     newSong.duration = song.duration;
     newSong.lyrics = song.lyrics;
+
+    const artists = await this.artistRepository.findByIds(song.artists);
+    newSong.artists = artists;
 
     return this.songsRepository.save(newSong);
   }
