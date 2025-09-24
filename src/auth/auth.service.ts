@@ -6,6 +6,7 @@ import { UserService } from '../user/user.service';
 import { ArtistsService } from '../artists/artists.service';
 
 import { LoginDto } from './dto/login.dto';
+import { PayloadType } from '../common/interface/payload-type.interface';
 
 @Injectable()
 export class AuthService {
@@ -27,14 +28,14 @@ export class AuthService {
       throw new UnauthorizedException('Password is incorrect.');
     }
 
-    const payload = {
+    const payload: PayloadType = {
       email: user.email,
-      sub: user.id,
+      userId: user.id,
     };
     const artist = await this.artistsService.findArtist(user.id);
 
     if (artist) {
-      payload.sub = artist.id;
+      payload.userId = artist.id;
     }
 
     return {
