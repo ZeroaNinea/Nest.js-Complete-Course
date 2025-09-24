@@ -13,7 +13,10 @@ import { User } from '../common/entities/user.entity';
 @Module({
   imports: [
     TypeOrmModule.forFeature([User]),
-    JwtModule.register({ secret: authConstants.secret }),
+    JwtModule.register({
+      secret: authConstants.secret,
+      signOptions: { expiresIn: '1d' },
+    }),
   ],
   providers: [AuthService, UserService],
   controllers: [AuthController],
