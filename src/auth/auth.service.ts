@@ -31,6 +31,11 @@ export class AuthService {
       email: user.email,
       sub: user.id,
     };
+    const artist = await this.artistsService.findArtist(user.id);
+
+    if (artist) {
+      payload.sub = artist.id;
+    }
 
     return {
       accessToken: this.jwtService.sign(payload),
