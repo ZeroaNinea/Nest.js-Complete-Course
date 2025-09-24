@@ -1,7 +1,5 @@
 import { Controller, Get, UseGuards } from '@nestjs/common';
-
 import { Req } from '@nestjs/common';
-import { PopulatedUser } from './common/interface/populated-user.interface';
 
 import { AppService } from './app.service';
 import { JwtAuthGuard } from './auth/jwt.guard';
@@ -17,7 +15,7 @@ export class AppController {
 
   @Get('profile')
   @UseGuards(JwtAuthGuard)
-  getProfile(@Req() request: { user: PopulatedUser }) {
+  getProfile(@Req() request: { user: { id: number; email: string } }) {
     return request.user;
   }
 }
