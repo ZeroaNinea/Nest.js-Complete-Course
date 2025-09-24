@@ -6,6 +6,8 @@ import { UserService } from '../user/user.service';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
 
+import { PopulatedUser } from '../common/interface/populated-user.interface';
+
 @Controller('auth')
 export class AuthController {
   constructor(
@@ -14,8 +16,17 @@ export class AuthController {
   ) {}
 
   @Post('signup')
-  signup(@Body() userDto: CreateUserDto) {
-    return this.userService.create(userDto);
+  async signup(@Body() userDto: CreateUserDto) {
+    const user = await this.userService.create(userDto);
+
+    const populatedUser: PopulatedUser = {
+      id: user.id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+    };
+
+    return populatedUser;
   }
 
   @Post('login')

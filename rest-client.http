@@ -45,6 +45,17 @@ Content-Type: application/json
   "password": "12345"
 }
 
+### Signup Artist
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+  "firstName": "Martin",
+  "lastName": "Garrix",
+  "email": "martin@gmail.com",
+  "password": "12345"
+}
+
 ### Login User
 POST http://localhost:3000/auth/login
 Content-Type: application/json
