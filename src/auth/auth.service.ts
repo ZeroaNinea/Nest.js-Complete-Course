@@ -1,4 +1,5 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
 import bcrypt from 'bcryptjs';
 
 import { UserService } from '../user/user.service';
@@ -7,7 +8,10 @@ import { PopulatedUser } from '../common/interface/populated-user.interface';
 
 @Injectable()
 export class AuthService {
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private jwtService: JwtService,
+  ) {}
 
   async login(loginDto: LoginDto): Promise<PopulatedUser> {
     const user = await this.userService.findOne(loginDto);

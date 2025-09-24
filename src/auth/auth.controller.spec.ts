@@ -1,4 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { JwtService } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AuthController } from './auth.controller';
@@ -22,7 +23,7 @@ describe('AuthController', () => {
         TypeOrmModule.forFeature([User]),
       ],
       controllers: [AuthController],
-      providers: [UserService, AuthService],
+      providers: [UserService, AuthService, JwtService],
     }).compile();
 
     controller = module.get<AuthController>(AuthController);
