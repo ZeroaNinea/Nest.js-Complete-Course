@@ -4,6 +4,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { User } from '../common/entities/user.entity';
+import { Artist } from '../common/entities/artist.entity';
 
 import { authConstants } from './auth.constants';
 import { JwtStrategy } from './jwt.strategy';
@@ -15,7 +16,7 @@ import { ArtistsService } from '../artists/artists.service';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([User]),
+    TypeOrmModule.forFeature([User, Artist]),
     JwtModule.register({
       secret: authConstants.secret,
       signOptions: { expiresIn: '1d' },
