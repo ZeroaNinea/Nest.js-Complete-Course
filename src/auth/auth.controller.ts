@@ -1,12 +1,15 @@
-import { Controller, Post, Body } from '@nestjs/common';
-
-import { CreateUserDto } from '../user/dto/create-user.dto';
+import { Controller, Post, Get, Body, Request } from '@nestjs/common';
+import { UseGuards } from '@nestjs/common';
 
 import { UserService } from '../user/user.service';
 import { AuthService } from './auth.service';
+import { CreateUserDto } from '../user/dto/create-user.dto';
 import { LoginDto } from './dto/login.dto';
 
+import { JwtAuthGuard } from './jwt.guard';
+
 import { PopulatedUser } from '../common/interface/populated-user.interface';
+import { Enable2FAType } from '../common/aliases/enable2FAType.alias';
 
 @Controller('auth')
 export class AuthController {
@@ -32,5 +35,14 @@ export class AuthController {
   @Post('login')
   login(@Body() loginDto: LoginDto) {
     return this.authService.login(loginDto);
+  }
+
+  @Get('enable-2fa')
+  @UseGuards(JwtAuthGuard)
+  enable2FA(
+    @Request() req: { user: { userId: number } },
+  ): Promise<Enable2FAType> {
+    console.log(req.user);
+    return this.authService.enable2FA(req.user.userId);
   }
 }
