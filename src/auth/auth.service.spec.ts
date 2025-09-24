@@ -5,7 +5,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AuthService } from './auth.service';
 import { UserService } from '../user/user.service';
+import { ArtistsService } from '../artists/artists.service';
+
 import { User } from '../common/entities/user.entity';
+import { Artist } from '../common/entities/artist.entity';
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -18,9 +21,9 @@ describe('AuthService', () => {
           database: ':memory:',
           synchronize: true,
         }),
-        TypeOrmModule.forFeature([User]),
+        TypeOrmModule.forFeature([User, Artist]),
       ],
-      providers: [AuthService, UserService, JwtService],
+      providers: [AuthService, UserService, JwtService, ArtistsService],
     }).compile();
 
     service = module.get<AuthService>(AuthService);

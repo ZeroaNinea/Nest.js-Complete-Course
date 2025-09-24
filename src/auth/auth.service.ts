@@ -3,6 +3,8 @@ import { JwtService } from '@nestjs/jwt';
 import bcrypt from 'bcryptjs';
 
 import { UserService } from '../user/user.service';
+import { ArtistsService } from '../artists/artists.service';
+
 import { LoginDto } from './dto/login.dto';
 
 @Injectable()
@@ -10,6 +12,7 @@ export class AuthService {
   constructor(
     private userService: UserService,
     private jwtService: JwtService,
+    private artistsService: ArtistsService,
   ) {}
 
   async login(loginDto: LoginDto): Promise<{ accessToken: string }> {

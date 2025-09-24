@@ -4,9 +4,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AuthController } from './auth.controller';
 import { User } from '../common/entities/user.entity';
+import { Artist } from '../common/entities/artist.entity';
 
 import { UserService } from '../user/user.service';
 import { AuthService } from './auth.service';
+import { ArtistsService } from '../artists/artists.service';
 
 describe('AuthController', () => {
   let controller: AuthController;
@@ -17,13 +19,12 @@ describe('AuthController', () => {
         TypeOrmModule.forRoot({
           type: 'sqlite',
           database: ':memory:',
-          // entities: [Song, Artist],
           synchronize: true,
         }),
-        TypeOrmModule.forFeature([User]),
+        TypeOrmModule.forFeature([User, Artist]),
       ],
       controllers: [AuthController],
-      providers: [UserService, AuthService, JwtService],
+      providers: [UserService, AuthService, JwtService, ArtistsService],
     }).compile();
 
     controller = module.get<AuthController>(AuthController);
