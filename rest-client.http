@@ -4,10 +4,11 @@ GET http://localhost:3000/
 ### Create New Song
 POST http://localhost:3000/songs
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hcnRpbkBnbWFpbC5jb20iLCJ1c2VySWQiOjIsImFydGlzdElkIjoxLCJpYXQiOjE3NTg3MjQxNDYsImV4cCI6MTc1ODgxMDU0Nn0.3y9sjDxwkhFGSi2hkLC4C0CurW0qLNndYMiUELWyE4s
 
 {
-  "title": "You for me. 2",
-  "artists": [1, 2],
+  "title": "Animals",
+  "artists": [1],
   "releasedDate": "2023-09-29",
   "duration": "02:34",
   "lyrics": "I'm your last lover."

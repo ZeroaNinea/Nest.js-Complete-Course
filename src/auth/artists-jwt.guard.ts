@@ -23,6 +23,6 @@ export class ArtistsJwtGuard extends AuthGuard('jwt') {
       return user as TUser;
     }
 
-    throw err || new UnauthorizedException();
+    throw err || new UnauthorizedException('You are not an artist.');
   }
 }

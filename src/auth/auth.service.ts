@@ -35,7 +35,7 @@ export class AuthService {
     const artist = await this.artistsService.findArtist(user.id);
 
     if (artist) {
-      payload.userId = artist.id;
+      payload.artistId = artist.id;
     }
 
     return {
