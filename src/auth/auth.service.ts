@@ -4,7 +4,6 @@ import bcrypt from 'bcryptjs';
 
 import { UserService } from '../user/user.service';
 import { LoginDto } from './dto/login.dto';
-import { PopulatedUser } from '../common/interface/populated-user.interface';
 
 @Injectable()
 export class AuthService {
@@ -13,7 +12,7 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async login(loginDto: LoginDto): Promise<PopulatedUser> {
+  async login(loginDto: LoginDto): Promise<{ accessToken: string }> {
     const user = await this.userService.findOne(loginDto);
 
     const passwordMatched = await bcrypt.compare(
@@ -25,13 +24,13 @@ export class AuthService {
       throw new UnauthorizedException('Password is incorrect.');
     }
 
-    const populatedUser = {
-      id: user.id,
-      firstName: user.firstName,
-      lastName: user.lastName,
+    const payload = {
       email: user.email,
+      sub: user.id,
     };
 
-    return populatedUser;
+    return {
+      accessToken: this.jwtService.sign(payload),
+    };
   }
 }

@@ -6,7 +6,6 @@ import {
 } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
-import { JwtModule } from '@nestjs/jwt';
 import Joi from 'joi';
 
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -55,7 +54,6 @@ const proConfig = { port: 4000 };
         entities: [Song, Artist, User],
       }),
     }),
-    JwtModule.register({ secret: 'secret\n>:3' }),
     SongsModule,
     AuthModule,
     UserModule,
