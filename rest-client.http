@@ -53,3 +53,6 @@ Content-Type: application/json
   "email": "john@example.com",
   "password": "12345"
 }
+
+### Get Profile
+GET http://localhost:3000/profile
