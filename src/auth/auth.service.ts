@@ -7,6 +7,11 @@ import { ArtistsService } from '../artists/artists.service';
 
 import { LoginDto } from './dto/login.dto';
 import { PayloadType } from '../common/interface/payload-type.interface';
+import { Enable2FAType } from '../common/aliases/enable2FAType.alias';
+
+import speakeasy from 'speakeasy';
+
+import type { User } from '../common/entities/user.entity';
 
 @Injectable()
 export class AuthService {
@@ -41,5 +46,20 @@ export class AuthService {
     return {
       accessToken: this.jwtService.sign(payload),
     };
+  }
+
+  async enable2FA(userId: number): Promise<Enable2FAType> {
+    const user: User = await this.userService.findById({ id: userId });
+
+    if (user.enable2FA) {
+      return { secret: user.twoFASecret };
+    }
+
+    const secret = speakeasy.generateSecret();
+
+    user.twoFASecret = secret.base32;
+    await this.userService.updateSecretKey(user.id, user.twoFASecret);
+
+    return { secret: user.twoFASecret };
   }
 }

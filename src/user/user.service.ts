@@ -32,4 +32,14 @@ export class UserService {
 
     return user;
   }
+
+  async findById(id: number): Promise<User> {
+    const user = await this.userRepository.findOneBy({ id });
+
+    if (!user) {
+      throw new UnauthorizedException('Could not find user.');
+    }
+
+    return user;
+  }
 }
