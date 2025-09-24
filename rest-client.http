@@ -65,6 +65,19 @@ Content-Type: application/json
   "password": "12345"
 }
 
+### Login Artist
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "martin@gmail.com",
+  "password": "12345"
+}
+
 ### Get Profile
 GET http://localhost:3000/profile
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZXhhbXBsZS5jb20iLCJzdWIiOjEsImlhdCI6MTc1ODcwNjI1OCwiZXhwIjoxNzU4NzkyNjU4fQ.0-wA5w11OtNrLiAIMdx7SFl5SZnrAYC8WJo-aY29HU8
+
+### Get Artist Profile
+GET http://localhost:3000/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hcnRpbkBnbWFpbC5jb20iLCJ1c2VySWQiOjEsImlhdCI6MTc1ODcyMjcyMSwiZXhwIjoxNzU4ODA5MTIxfQ.wPgDzlMHanhuNZwVfJqoyJankOA2Y_WA3CGOvjkYfzA
