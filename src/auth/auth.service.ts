@@ -49,7 +49,7 @@ export class AuthService {
   }
 
   async enable2FA(userId: number): Promise<Enable2FAType> {
-    const user: User = await this.userService.findById({ id: userId });
+    const user: User = await this.userService.findById(userId);
 
     if (user.enable2FA) {
       return { secret: user.twoFASecret };

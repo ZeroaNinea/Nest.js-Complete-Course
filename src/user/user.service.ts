@@ -42,4 +42,11 @@ export class UserService {
 
     return user;
   }
+
+  async updateSecretKey(userId: number, secret: string) {
+    return this.userRepository.update(
+      { id: userId },
+      { twoFASecret: secret, enable2FA: true },
+    );
+  }
 }
