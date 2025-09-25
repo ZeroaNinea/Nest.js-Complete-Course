@@ -4,6 +4,8 @@ import bcrypt from 'bcryptjs';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
+import { UuidService } from 'nestjs-uuid';
+
 import { User } from '../common/entities/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { LoginDto } from '../auth/dto/login.dto';
@@ -14,14 +16,37 @@ export class UserService {
   constructor(
     @InjectRepository(User)
     private userRepository: Repository<User>,
+    private uuidService: UuidService,
   ) {}
 
-  async create(userDto: CreateUserDto): Promise<User> {
+  async create(userDto: CreateUserDto): Promise<{
+    id: number;
+    firstName: string;
+    lastName: string;
+    email: string;
+    apiKey: string;
+  }> {
+    const user = new User();
+    user.firstName = userDto.firstName;
+    user.lastName = userDto.lastName;
+    user.email = userDto.email;
+    user.apiKey = this.uuidService.generate();
+
     const salt = await bcrypt.genSalt();
     userDto.password = await bcrypt.hash(userDto.password, salt);
-    const user = await this.userRepository.save(userDto);
+    // const user = await this.userRepository.save(userDto);
 
-    return user;
+    const savedUser = await this.userRepository.save(user);
+
+    const populatedUser = {
+      id: savedUser.id,
+      firstName: savedUser.firstName,
+      lastName: savedUser.lastName,
+      email: savedUser.email,
+      apiKey: savedUser.apiKey,
+    };
+
+    return populatedUser;
   }
 
   async findOne(data: LoginDto): Promise<User> {

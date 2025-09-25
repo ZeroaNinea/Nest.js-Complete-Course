@@ -1,6 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
+import { UuidService } from 'nestjs-uuid';
+
 import { UserService } from './user.service';
 import { User } from '../common/entities/user.entity';
 
@@ -18,7 +20,7 @@ describe('UserService', () => {
         }),
         TypeOrmModule.forFeature([User]),
       ],
-      providers: [UserService],
+      providers: [UserService, UuidService],
     }).compile();
 
     service = module.get<UserService>(UserService);

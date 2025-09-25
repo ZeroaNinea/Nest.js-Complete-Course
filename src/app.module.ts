@@ -6,6 +6,7 @@ import {
 } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
+import { UuidModule } from 'nestjs-uuid';
 import Joi from 'joi';
 
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -59,6 +60,7 @@ const proConfig = { port: 4000 };
     AuthModule,
     UserModule,
     ArtistsModule,
+    UuidModule,
   ],
   controllers: [AppController],
   providers: [

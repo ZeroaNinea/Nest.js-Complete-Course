@@ -1,6 +1,8 @@
 import { Controller, Post, Get, Body, Request } from '@nestjs/common';
 import { UseGuards } from '@nestjs/common';
 
+import { UpdateResult } from 'typeorm';
+
 import { UserService } from '../user/user.service';
 import { AuthService } from './auth.service';
 
@@ -12,7 +14,6 @@ import { JwtAuthGuard } from './jwt.guard';
 
 import { PopulatedUser } from '../common/interface/populated-user.interface';
 import { Enable2FAType } from '../common/aliases/enable2FAType.alias';
-import { UpdateResult } from 'typeorm';
 
 @Controller('auth')
 export class AuthController {
