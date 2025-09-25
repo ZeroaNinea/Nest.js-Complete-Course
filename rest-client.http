@@ -99,3 +99,7 @@ Content-Type: application/json
 ### Disable 2FA
 GET http://localhost:3000/auth/disable-2fa
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hcnRpbkBnbWFpbC5jb20iLCJ1c2VySWQiOjIsImFydGlzdElkIjoxLCJpYXQiOjE3NTg4MTg5MDQsImV4cCI6MTc1ODkwNTMwNH0.OLu8J_F5jrhoF-MgiDgAvhrscOh0XXLdFe0Oc3RoDlA
+
+### Access Profile
+GET http://localhost:3000/auth/profile
+Authorization: Bearer e807f506-fca9-45a7-a5d7-cd4cc692b747
