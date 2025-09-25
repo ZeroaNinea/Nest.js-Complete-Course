@@ -3,13 +3,13 @@ import bcrypt from 'bcryptjs';
 
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { UpdateResult } from 'typeorm/browser';
 
 import { UuidService } from 'nestjs-uuid';
 
 import { User } from '../common/entities/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { LoginDto } from '../auth/dto/login.dto';
-import { UpdateResult } from 'typeorm/browser';
 
 @Injectable()
 export class UserService {
