@@ -21,7 +21,11 @@ export class AuthService {
     private artistsService: ArtistsService,
   ) {}
 
-  async login(loginDto: LoginDto): Promise<{ accessToken: string }> {
+  async login(
+    loginDto: LoginDto,
+  ): Promise<
+    { accessToken: string } | { validate2FA: string; message: string }
+  > {
     const user = await this.userService.findOne(loginDto);
 
     const passwordMatched = await bcrypt.compare(
@@ -43,6 +47,14 @@ export class AuthService {
       payload.artistId = artist.id;
     }
 
+    if (user.enable2FA && user.twoFASecret) {
+      return {
+        validate2FA: 'http://localhost:3000/validate-2fa',
+        message:
+          'Please sends the one time password/token your Google Authenticator app.',
+      };
+    }
+
     return {
       accessToken: this.jwtService.sign(payload),
     };
@@ -51,7 +63,7 @@ export class AuthService {
   async enable2FA(userId: number): Promise<Enable2FAType> {
     const user: User = await this.userService.findById(userId);
 
-    if (user.enable2FA) {
+    if (user.enable2FA && user.twoFASecret) {
       return { secret: user.twoFASecret };
     }
 
@@ -69,6 +81,10 @@ export class AuthService {
   ): Promise<{ verified: boolean }> {
     try {
       const user = await this.userService.findById(userId);
+
+      if (!user.twoFASecret) {
+        return { verified: false };
+      }
 
       const verified = speakeasy.totp.verify({
         secret: user.twoFASecret,
