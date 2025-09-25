@@ -3,8 +3,10 @@ import { UseGuards } from '@nestjs/common';
 
 import { UserService } from '../user/user.service';
 import { AuthService } from './auth.service';
+
 import { CreateUserDto } from '../user/dto/create-user.dto';
 import { LoginDto } from './dto/login.dto';
+import { ValidateTokenDto } from './dto/validate-token.dto';
 
 import { JwtAuthGuard } from './jwt.guard';
 
@@ -44,5 +46,17 @@ export class AuthController {
   ): Promise<Enable2FAType> {
     console.log(req.user);
     return this.authService.enable2FA(req.user.userId);
+  }
+
+  @Post('validate-2fa')
+  @UseGuards(JwtAuthGuard)
+  validate2FA(
+    @Request() req,
+    @Body() ValidateTokenDto: ValidateTokenDto,
+  ): Promise<{ verified: boolean }> {
+    return this.authService.validate2FAToken(
+      req.user.userId,
+      ValidateTokenDto.token,
+    );
   }
 }
