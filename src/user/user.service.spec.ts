@@ -5,6 +5,7 @@ import { UuidService } from 'nestjs-uuid';
 
 import { UserService } from './user.service';
 import { User } from '../common/entities/user.entity';
+import { Playlist } from '../common/entities/playlist.entity';
 
 describe('UserService', () => {
   let service: UserService;
@@ -18,7 +19,7 @@ describe('UserService', () => {
           // entities: [Song, Artist],
           synchronize: true,
         }),
-        TypeOrmModule.forFeature([User]),
+        TypeOrmModule.forFeature([User, Playlist]),
       ],
       providers: [UserService, UuidService],
     }).compile();
