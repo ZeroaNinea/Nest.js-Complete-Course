@@ -12,6 +12,7 @@ import { JwtAuthGuard } from './jwt.guard';
 
 import { PopulatedUser } from '../common/interface/populated-user.interface';
 import { Enable2FAType } from '../common/aliases/enable2FAType.alias';
+import { UpdateResult } from 'typeorm';
 
 @Controller('auth')
 export class AuthController {
@@ -57,5 +58,13 @@ export class AuthController {
       req.user.userId,
       ValidateTokenDto.token,
     );
+  }
+
+  @Get('disable-2fa')
+  @UseGuards(JwtAuthGuard)
+  disable2FA(
+    @Request() req: { user: { userId: number } },
+  ): Promise<UpdateResult> {
+    return this.userService.disable2FA(req.user.userId);
   }
 }
