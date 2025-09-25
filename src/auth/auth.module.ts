@@ -14,6 +14,7 @@ import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { UserService } from '../user/user.service';
 import { ArtistsService } from '../artists/artists.service';
+import { ApiKeyStrategy } from './api-key.strategy';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { ArtistsService } from '../artists/artists.service';
     JwtStrategy,
     ArtistsService,
     UuidService,
+    ApiKeyStrategy,
   ],
   controllers: [AuthController],
   exports: [AuthService],

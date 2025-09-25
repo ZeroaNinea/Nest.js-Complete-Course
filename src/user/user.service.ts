@@ -70,4 +70,14 @@ export class UserService {
       },
     );
   }
+
+  async findByApiKey(apiKey: string): Promise<User> {
+    const user = await this.userRepository.findOneBy({ apiKey });
+
+    if (!user) {
+      throw new UnauthorizedException('Could not find user.');
+    }
+
+    return user;
+  }
 }
