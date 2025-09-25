@@ -82,3 +82,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ
 ### Get Artist Profile
 GET http://localhost:3000/profile
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hcnRpbkBnbWFpbC5jb20iLCJ1c2VySWQiOjEsImlhdCI6MTc1ODcyMjcyMSwiZXhwIjoxNzU4ODA5MTIxfQ.wPgDzlMHanhuNZwVfJqoyJankOA2Y_WA3CGOvjkYfzA
+
+### Enable 2FA
+GET http://localhost:3000/auth/enable-2fa
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hcnRpbkBnbWFpbC5jb20iLCJ1c2VySWQiOjIsImFydGlzdElkIjoxLCJpYXQiOjE3NTg3OTI5NzcsImV4cCI6MTc1ODg3OTM3N30.P8SzCRJ1GapjXNe6cCMMjlfqZXnbNPhHYa8Swh045Ig
