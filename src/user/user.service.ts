@@ -38,15 +38,13 @@ export class UserService {
 
     const savedUser = await this.userRepository.save(user);
 
-    const populatedUser = {
+    return {
       id: savedUser.id,
       firstName: savedUser.firstName,
       lastName: savedUser.lastName,
       email: savedUser.email,
       apiKey: savedUser.apiKey,
     };
-
-    return populatedUser;
   }
 
   async findOne(data: LoginDto): Promise<User> {
