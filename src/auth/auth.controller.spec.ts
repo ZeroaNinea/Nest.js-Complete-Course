@@ -2,6 +2,8 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { JwtService } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
+import { UuidService } from 'nestjs-uuid';
+
 import { AuthController } from './auth.controller';
 import { User } from '../common/entities/user.entity';
 import { Artist } from '../common/entities/artist.entity';
@@ -24,7 +26,13 @@ describe('AuthController', () => {
         TypeOrmModule.forFeature([User, Artist]),
       ],
       controllers: [AuthController],
-      providers: [UserService, AuthService, JwtService, ArtistsService],
+      providers: [
+        UserService,
+        AuthService,
+        JwtService,
+        ArtistsService,
+        UuidService,
+      ],
     }).compile();
 
     controller = module.get<AuthController>(AuthController);

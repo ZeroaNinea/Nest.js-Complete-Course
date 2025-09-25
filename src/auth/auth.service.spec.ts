@@ -3,6 +3,8 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { JwtService } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
+import { UuidService } from 'nestjs-uuid';
+
 import { AuthService } from './auth.service';
 import { UserService } from '../user/user.service';
 import { ArtistsService } from '../artists/artists.service';
@@ -23,7 +25,13 @@ describe('AuthService', () => {
         }),
         TypeOrmModule.forFeature([User, Artist]),
       ],
-      providers: [AuthService, UserService, JwtService, ArtistsService],
+      providers: [
+        AuthService,
+        UserService,
+        JwtService,
+        ArtistsService,
+        UuidService,
+      ],
     }).compile();
 
     service = module.get<AuthService>(AuthService);

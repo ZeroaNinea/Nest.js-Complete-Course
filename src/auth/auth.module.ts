@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 
 import { JwtModule } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { UuidService } from 'nestjs-uuid';
 
 import { User } from '../common/entities/user.entity';
 import { Artist } from '../common/entities/artist.entity';
@@ -22,7 +23,13 @@ import { ArtistsService } from '../artists/artists.service';
       signOptions: { expiresIn: '1d' },
     }),
   ],
-  providers: [AuthService, UserService, JwtStrategy, ArtistsService],
+  providers: [
+    AuthService,
+    UserService,
+    JwtStrategy,
+    ArtistsService,
+    UuidService,
+  ],
   controllers: [AuthController],
   exports: [AuthService],
 })
