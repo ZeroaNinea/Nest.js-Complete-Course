@@ -19,13 +19,7 @@ export class UserService {
     private uuidService: UuidService,
   ) {}
 
-  async create(userDto: CreateUserDto): Promise<{
-    id: number;
-    firstName: string;
-    lastName: string;
-    email: string;
-    apiKey: string;
-  }> {
+  async create(userDto: CreateUserDto): Promise<User> {
     const user = new User();
     user.firstName = userDto.firstName;
     user.lastName = userDto.lastName;
@@ -35,16 +29,9 @@ export class UserService {
     const salt = await bcrypt.genSalt();
     userDto.password = await bcrypt.hash(userDto.password, salt);
     // const user = await this.userRepository.save(userDto);
+    user.password = userDto.password;
 
-    const savedUser = await this.userRepository.save(user);
-
-    return {
-      id: savedUser.id,
-      firstName: savedUser.firstName,
-      lastName: savedUser.lastName,
-      email: savedUser.email,
-      apiKey: savedUser.apiKey,
-    };
+    return await this.userRepository.save(user);
   }
 
   async findOne(data: LoginDto): Promise<User> {
