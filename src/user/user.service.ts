@@ -7,6 +7,7 @@ import { Repository } from 'typeorm';
 import { User } from '../common/entities/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { LoginDto } from '../auth/dto/login.dto';
+import { UpdateResult } from 'typeorm/browser';
 
 @Injectable()
 export class UserService {
@@ -43,7 +44,7 @@ export class UserService {
     return user;
   }
 
-  async updateSecretKey(userId: number, secret: string) {
+  async updateSecretKey(userId: number, secret: string): Promise<UpdateResult> {
     return this.userRepository.update(
       { id: userId },
       { twoFASecret: secret, enable2FA: true },
