@@ -30,6 +30,7 @@ import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { ArtistsModule } from './artists/artists.module';
 import { dataSourceOptions } from 'src/db/data-source';
+import { SeedModule } from './seed/seed.module';
 
 const devConfig = { port: 3000 };
 const proConfig = { port: 4000 };
@@ -67,6 +68,7 @@ const proConfig = { port: 4000 };
     UserModule,
     ArtistsModule,
     UuidModule,
+    SeedModule,
   ],
   controllers: [AppController],
   providers: [
