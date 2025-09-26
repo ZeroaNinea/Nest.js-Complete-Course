@@ -30,8 +30,8 @@ export class User {
   @Column()
   apiKey: string;
 
-  @Column()
-  phone: string;
+  // @Column()
+  // phone: string;
 
   @OneToMany(() => Playlist, (playList) => playList.user)
   playLists: Playlist[];
