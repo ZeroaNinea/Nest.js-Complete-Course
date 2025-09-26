@@ -26,6 +26,7 @@ import { DevConfigService } from './common/services/dev-config/dev-config.servic
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { ArtistsModule } from './artists/artists.module';
+import { dataSourceOptions } from 'db/data-source';
 
 const devConfig = { port: 3000 };
 const proConfig = { port: 4000 };
@@ -42,21 +43,22 @@ const proConfig = { port: 4000 };
         DB_NAME: Joi.string().required(),
       }),
     }),
-    TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
-      inject: [ConfigService],
-      useFactory: (configService: ConfigService) => ({
-        type: 'postgres',
-        host: configService.get<string>('DB_HOST'),
-        port: configService.get<number>('DB_PORT'),
-        username: configService.get<string>('DB_USERNAME'),
-        password: configService.get<string>('DB_PASSWORD'),
-        database: configService.get<string>('DB_NAME'),
-        autoLoadEntities: true,
-        synchronize: true,
-        entities: [Song, Artist, User, Playlist],
-      }),
-    }),
+    // TypeOrmModule.forRootAsync({
+    //   imports: [ConfigModule],
+    //   inject: [ConfigService],
+    //   useFactory: (configService: ConfigService) => ({
+    //     type: 'postgres',
+    //     host: configService.get<string>('DB_HOST'),
+    //     port: configService.get<number>('DB_PORT'),
+    //     username: configService.get<string>('DB_USERNAME'),
+    //     password: configService.get<string>('DB_PASSWORD'),
+    //     database: configService.get<string>('DB_NAME'),
+    //     autoLoadEntities: true,
+    //     synchronize: true,
+    //     entities: [Song, Artist, User, Playlist],
+    //   }),
+    // }),
+    TypeOrmModule.forRoot(dataSourceOptions),
     SongsModule,
     AuthModule,
     UserModule,

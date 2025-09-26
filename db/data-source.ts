@@ -1,5 +1,4 @@
-import { DataSourceOptions } from 'typeorm';
-import { DataSource } from 'typeorm/browser';
+import { DataSourceOptions, DataSource } from 'typeorm';
 
 import dotenv from 'dotenv';
 dotenv.config();
@@ -18,6 +17,7 @@ export const dataSourceOptions: DataSourceOptions = {
   database: process.env.DB_NAME,
   entities: [Song, Artist, User, Playlist],
   migrations: ['dist/db/migrations/*.js'],
+  synchronize: false,
 };
 
 const dataSource = new DataSource(dataSourceOptions);
