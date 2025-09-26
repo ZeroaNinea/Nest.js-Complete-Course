@@ -3,10 +3,10 @@ import { DataSourceOptions, DataSource } from 'typeorm';
 import dotenv from 'dotenv';
 dotenv.config();
 
-import { Song } from '../src/common/entities/song.entity';
-import { Artist } from '../src/common/entities/artist.entity';
-import { User } from '../src/common/entities/user.entity';
-import { Playlist } from '../src/common/entities/playlist.entity';
+import { Song } from '../common/entities/song.entity';
+import { Artist } from '../common/entities/artist.entity';
+import { User } from '../common/entities/user.entity';
+import { Playlist } from '../common/entities/playlist.entity';
 
 export const dataSourceOptions: DataSourceOptions = {
   type: 'postgres',

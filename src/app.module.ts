@@ -29,7 +29,7 @@ import { DevConfigService } from './common/services/dev-config/dev-config.servic
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { ArtistsModule } from './artists/artists.module';
-import { dataSourceOptions } from 'db/data-source';
+import { dataSourceOptions } from 'src/db/data-source';
 
 const devConfig = { port: 3000 };
 const proConfig = { port: 4000 };
