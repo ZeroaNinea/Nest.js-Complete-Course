@@ -17,7 +17,6 @@ export const dataSourceOptions: DataSourceOptions = {
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   entities: [Song, Artist, User, Playlist],
-  synchronize: true,
   migrations: ['dist/db/migrations/*.js'],
 };
 
