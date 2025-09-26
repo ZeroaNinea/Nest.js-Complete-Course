@@ -15,6 +15,7 @@ import { DataSource } from 'typeorm';
 import { Song } from './common/entities/song.entity';
 import { Artist } from './common/entities/artist.entity';
 import { User } from './common/entities/user.entity';
+import { Playlist } from './common/entities/playlist.entity';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -53,7 +54,7 @@ const proConfig = { port: 4000 };
         database: configService.get<string>('DB_NAME'),
         autoLoadEntities: true,
         synchronize: true,
-        entities: [Song, Artist, User],
+        entities: [Song, Artist, User, Playlist],
       }),
     }),
     SongsModule,
