@@ -43,6 +43,13 @@ npm run migration:generate -- src/db/migrations/migrations
 
 ```
 
+Run migrations:
+
+```bash
+npm run migration:run
+
+```
+
 - **`typeorm`**: Builds the project and runs the TypeORM CLI using your compiled datasource.
 - **`migration:generate`**: Compares your entities (`src/**/*.entity.ts`) against the DB schema and creates a new migration file.
 - **`migration:run`**: Applies all pending migrations to the DB.
