@@ -4,7 +4,10 @@ import {
   NestModule,
   // RequestMethod,
 } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import {
+  ConfigModule,
+  // ConfigService
+} from '@nestjs/config';
 
 import { UuidModule } from 'nestjs-uuid';
 import Joi from 'joi';
@@ -12,10 +15,10 @@ import Joi from 'joi';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 
-import { Song } from './common/entities/song.entity';
-import { Artist } from './common/entities/artist.entity';
-import { User } from './common/entities/user.entity';
-import { Playlist } from './common/entities/playlist.entity';
+// import { Song } from './common/entities/song.entity';
+// import { Artist } from './common/entities/artist.entity';
+// import { User } from './common/entities/user.entity';
+// import { Playlist } from './common/entities/playlist.entity';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
