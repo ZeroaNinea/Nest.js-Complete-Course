@@ -16,4 +16,5 @@ export default () => ({
   autoLoadEntities: true,
   synchronize: true,
   entities: [Song, Artist, User, Playlist],
+  secret: process.env.JWT_SECRET,
 });
