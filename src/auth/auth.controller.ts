@@ -16,6 +16,8 @@ import { JwtAuthGuard } from './jwt.guard';
 import { PopulatedUser } from '../common/interface/populated-user.interface';
 import { Enable2FAType } from '../common/aliases/enable2FAType.alias';
 
+import { User } from '../common/entities/user.entity';
+
 @Controller('auth')
 export class AuthController {
   constructor(
@@ -72,10 +74,15 @@ export class AuthController {
 
   @Get('profile')
   @UseGuards(AuthGuard('bearer'))
-  getProfile(@Request() req) {
+  getProfile(@Request() req: { user: User }) {
     return {
       msg: 'Authenticated with API key.',
       user: req.user,
     };
+  }
+
+  @Get('test')
+  testEnvVariable() {
+    return this.authService.getEnvVariable();
   }
 }
