@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 
+import { ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UuidService } from 'nestjs-uuid';
@@ -31,6 +32,7 @@ import { ApiKeyStrategy } from './api-key.strategy';
     ArtistsService,
     UuidService,
     ApiKeyStrategy,
+    ConfigService,
   ],
   controllers: [AuthController],
   exports: [AuthService],

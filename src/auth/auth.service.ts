@@ -1,5 +1,6 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { ConfigService } from '@nestjs/config';
 import bcrypt from 'bcryptjs';
 
 import { UserService } from '../user/user.service';
@@ -19,6 +20,7 @@ export class AuthService {
     private userService: UserService,
     private jwtService: JwtService,
     private artistsService: ArtistsService,
+    private configService: ConfigService,
   ) {}
 
   async login(
@@ -104,5 +106,9 @@ export class AuthService {
 
   async validateUserByApiKey(apiKey: string): Promise<User> {
     return await this.userService.findByApiKey(apiKey);
+  }
+
+  getEnvVariable() {
+    return this.configService.get<number>('PORT');
   }
 }

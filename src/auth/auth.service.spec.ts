@@ -1,6 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
 
 import { JwtService } from '@nestjs/jwt';
+import { ConfigService } from '@nestjs/config';
+
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { UuidService } from 'nestjs-uuid';
@@ -31,6 +33,7 @@ describe('AuthService', () => {
         JwtService,
         ArtistsService,
         UuidService,
+        ConfigService,
       ],
     }).compile();
 
