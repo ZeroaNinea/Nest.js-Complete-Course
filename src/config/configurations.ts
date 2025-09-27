@@ -17,4 +17,5 @@ export default () => ({
   synchronize: true,
   entities: [Song, Artist, User, Playlist],
   secret: process.env.JWT_SECRET,
+  node_env: process.env.NODE_ENV,
 });
