@@ -28,6 +28,7 @@ import { UserModule } from './user/user.module';
 import { ArtistsModule } from './artists/artists.module';
 // import { dataSourceOptions } from 'src/db/data-source';
 import { SeedModule } from './seed/seed.module';
+import configurations from './config/configurations';
 
 const devConfig = { port: 3000 };
 const proConfig = { port: 4000 };
@@ -44,6 +45,7 @@ const proConfig = { port: 4000 };
         DB_PASSWORD: Joi.string().required(),
         DB_NAME: Joi.string().required(),
       }),
+      load: [configurations],
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
