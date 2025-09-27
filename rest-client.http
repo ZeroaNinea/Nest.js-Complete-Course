@@ -103,3 +103,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hcnRpb
 ### Access Profile
 GET http://localhost:3000/auth/profile
 Authorization: Bearer e807f506-fca9-45a7-a5d7-cd4cc692b747
+
+### Test the Env Variable
+GET http://localhost:3000/auth/test
