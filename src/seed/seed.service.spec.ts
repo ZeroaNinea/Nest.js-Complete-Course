@@ -7,6 +7,7 @@ import { Song } from '../common/entities/song.entity';
 import { Artist } from '../common/entities/artist.entity';
 
 import { SeedService } from './seed.service';
+import { UuidService } from 'nestjs-uuid';
 
 describe('SeedService', () => {
   let service: SeedService;
@@ -21,7 +22,7 @@ describe('SeedService', () => {
         }),
         TypeOrmModule.forFeature([User, Playlist, Song, Artist]),
       ],
-      providers: [SeedService],
+      providers: [SeedService, UuidService],
     }).compile();
 
     service = module.get<SeedService>(SeedService);

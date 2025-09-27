@@ -8,12 +8,13 @@ import { Playlist } from '../../common/entities/playlist.entity';
 import { Artist } from '../../common/entities/artist.entity';
 import { User } from '../../common/entities/user.entity';
 
-export const seedData = async (manager: EntityManager): Promise<void> => {
+export const seedData = async (
+  manager: EntityManager,
+  uuidService: UuidService,
+): Promise<void> => {
   await seedUser();
   await seedArtist();
   await seedPlayLists();
-
-  const uuidService = new UuidService();
 
   async function seedUser() {
     const salt = await bcrypt.genSalt();
