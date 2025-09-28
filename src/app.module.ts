@@ -4,7 +4,10 @@ import {
   NestModule,
   // RequestMethod,
 } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import {
+  ConfigModule,
+  // ConfigService
+} from '@nestjs/config';
 
 import { UuidModule } from 'nestjs-uuid';
 // import Joi from 'joi';
@@ -12,10 +15,10 @@ import { UuidModule } from 'nestjs-uuid';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 
-import { Song } from './common/entities/song.entity';
-import { Artist } from './common/entities/artist.entity';
-import { User } from './common/entities/user.entity';
-import { Playlist } from './common/entities/playlist.entity';
+// import { Song } from './common/entities/song.entity';
+// import { Artist } from './common/entities/artist.entity';
+// import { User } from './common/entities/user.entity';
+// import { Playlist } from './common/entities/playlist.entity';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -26,7 +29,7 @@ import { DevConfigService } from './common/services/dev-config/dev-config.servic
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { ArtistsModule } from './artists/artists.module';
-// import { dataSourceOptions } from 'src/db/data-source';
+import { dataSourceOptions } from './db/data-source';
 import { SeedModule } from './seed/seed.module';
 import configurations from './config/configurations';
 
@@ -50,22 +53,23 @@ const proConfig = { port: 4000 };
       load: [configurations],
       validate: validate,
     }),
-    TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
-      inject: [ConfigService],
-      useFactory: (configService: ConfigService) => ({
-        type: 'postgres',
-        host: configService.get<string>('DB_HOST'),
-        port: configService.get<number>('DB_PORT'),
-        username: configService.get<string>('DB_USERNAME'),
-        password: configService.get<string>('DB_PASSWORD'),
-        database: configService.get<string>('DB_NAME'),
-        autoLoadEntities: true,
-        synchronize: true,
-        entities: [Song, Artist, User, Playlist],
-      }),
-    }),
-    // TypeOrmModule.forRoot(dataSourceOptions),
+    // TypeOrmModule.forRootAsync({
+    //   imports: [ConfigModule],
+    //   inject: [ConfigService],
+    //   useFactory: (configService: ConfigService) => ({
+    //     type: 'postgres',
+    //     host: configService.get<string>('DB_HOST'),
+    //     port: configService.get<number>('DB_PORT'),
+    //     username: configService.get<string>('DB_USERNAME'),
+    //     password: configService.get<string>('DB_PASSWORD'),
+    //     database: configService.get<string>('DB_NAME'),
+    //     jwtSecret: configService.get<string>('JWT_SECRET'),
+    //     autoLoadEntities: true,
+    //     synchronize: true,
+    //     entities: [Song, Artist, User, Playlist],
+    //   }),
+    // }),
+    TypeOrmModule.forRoot(dataSourceOptions),
     SongsModule,
     AuthModule,
     UserModule,
