@@ -1,6 +1,7 @@
 import { Controller, Post, Get, Body, Request } from '@nestjs/common';
 import { UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { ApiResponse, ApiTags, ApiOperation } from '@nestjs/swagger';
 
 import { UpdateResult } from 'typeorm';
 
@@ -19,6 +20,7 @@ import { Enable2FAType } from '../common/aliases/enable2FAType.alias';
 import { User } from '../common/entities/user.entity';
 
 @Controller('auth')
+@ApiTags('auth')
 export class AuthController {
   constructor(
     private userService: UserService,
@@ -26,6 +28,13 @@ export class AuthController {
   ) {}
 
   @Post('signup')
+  @ApiOperation({
+    summary: 'Register new user',
+  })
+  @ApiResponse({
+    status: 201,
+    description: 'It will return the user in the response.',
+  })
   async signup(@Body() userDto: CreateUserDto) {
     const user = await this.userService.create(userDto);
 
