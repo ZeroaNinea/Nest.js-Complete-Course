@@ -49,6 +49,13 @@ export class AuthController {
   }
 
   @Post('login')
+  @ApiOperation({
+    summary: 'Login user',
+  })
+  @ApiResponse({
+    status: 201,
+    description: 'It will return a JWT token.',
+  })
   login(@Body() loginDto: LoginDto) {
     return this.authService.login(loginDto);
   }
