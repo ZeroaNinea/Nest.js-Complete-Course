@@ -3,9 +3,9 @@ import { ValidationPipe } from '@nestjs/common';
 
 // import { SeedService } from './seed/seed.service';
 import { ConfigService } from '@nestjs/config';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 import { AppModule } from './app.module';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 declare const module: {
   hot?: {
