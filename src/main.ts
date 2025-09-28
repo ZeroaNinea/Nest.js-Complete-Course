@@ -5,6 +5,7 @@ import { ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 
 import { AppModule } from './app.module';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 declare const module: {
   hot?: {
@@ -16,8 +17,21 @@ declare const module: {
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe());
+
+  /* Seeding */
   // const seedService = app.get(SeedService);
   // await seedService.seed();
+
+  /* Swagger */
+  const config = new DocumentBuilder()
+    .setTitle('Postgres')
+    .setDescription('The Postgres API documentation.')
+    .setVersion('1.0')
+    .build();
+
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api', app, document);
+
   const configService = app.get(ConfigService);
   await app.listen(configService.get<number>('PORT') ?? 3000);
 
