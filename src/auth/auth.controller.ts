@@ -1,7 +1,12 @@
 import { Controller, Post, Get, Body, Request } from '@nestjs/common';
 import { UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { ApiResponse, ApiTags, ApiOperation } from '@nestjs/swagger';
+import {
+  ApiResponse,
+  ApiTags,
+  ApiOperation,
+  ApiBearerAuth,
+} from '@nestjs/swagger';
 
 import { UpdateResult } from 'typeorm';
 
@@ -90,6 +95,7 @@ export class AuthController {
 
   @Get('profile')
   @UseGuards(AuthGuard('bearer'))
+  @ApiBearerAuth('JWT-auth')
   getProfile(@Request() req: { user: User }) {
     return {
       msg: 'Authenticated with API key.',
