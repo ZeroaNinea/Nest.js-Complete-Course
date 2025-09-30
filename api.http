@@ -14,3 +14,6 @@ GET http://localhost:3000/songs
 
 ### Get song by ID.
 GET http://localhost:3000/songs/68dbf959f8d16b235239ae7f
+
+### Delete song by ID.
+DELETE http://localhost:3000/songs/68dc04cb30d5c6457d1bd2d3
