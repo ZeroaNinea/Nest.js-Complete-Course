@@ -6,6 +6,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { SongsModule } from './songs/songs.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { AppService } from './app.service';
         uri: configService.get<string>('MONGODB_URI'),
       }),
     }),
+    SongsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
