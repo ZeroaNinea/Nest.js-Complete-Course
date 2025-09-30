@@ -1,7 +1,7 @@
 import { Controller, Post, Get, Body, Param, Delete } from '@nestjs/common';
 
 import { Song } from '../common/schemas/song.model';
-import { CreateSongDto } from '../common/dto/create-song-dto';
+import { CreateSongDto } from '../common/dto/create-song.dto';
 import { SongsService } from './songs.service';
 
 @Controller('songs')

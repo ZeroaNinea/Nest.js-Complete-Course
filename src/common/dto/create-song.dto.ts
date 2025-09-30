@@ -1,4 +1,5 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsMilitaryTime, IsNotEmpty, IsString } from 'class-validator';
+import { Type } from 'class-transformer';
 
 export class CreateSongDto {
   @IsString()
@@ -11,9 +12,11 @@ export class CreateSongDto {
 
   @IsString()
   @IsNotEmpty()
+  @Type(() => Date)
   duration: string;
 
   @IsString()
   @IsNotEmpty()
+  @Type(() => IsMilitaryTime)
   lyrics: string;
 }

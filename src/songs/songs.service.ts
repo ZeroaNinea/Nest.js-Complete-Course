@@ -3,7 +3,8 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
 import { Song, SongDocument } from '../common/schemas/song.model';
-import { CreateSongDto } from '../common/dto/create-song-dto';
+import { CreateSongDto } from '../common/dto/create-song.dto';
+import { UpdateSongDto } from '../common/dto/update-song.dto';
 
 @Injectable()
 export class SongsService {
@@ -30,5 +31,9 @@ export class SongsService {
 
   async delete(id: string) {
     return this.songModel.deleteOne({ _id: id });
+  }
+
+  async update(id: string, updateSongDto: UpdateSongDto) {
+    return this.songModel.updateOne({ _id: id }, updateSongDto);
   }
 }
