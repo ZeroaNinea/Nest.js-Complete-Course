@@ -13,7 +13,7 @@ export class Song {
   @Prop({
     required: true,
   })
-  releasedDate: Date;
+  releasedDate: string;
 
   @Prop({
     required: true,
