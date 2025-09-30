@@ -16,4 +16,15 @@ GET http://localhost:3000/songs
 GET http://localhost:3000/songs/68dbf959f8d16b235239ae7f
 
 ### Delete song by ID.
-DELETE http://localhost:3000/songs/68dc04cb30d5c6457d1bd2d3
+DELETE http://localhost:3000/songs/68dc09b99e5d9b172bc11980
+
+### Update song by ID.
+PUT http://localhost:3000/songs/68dbfa20f8d16b235239ae81
+Content-Type: application/json
+
+{
+  "title": "Love Me",
+  "releasedDate": "2061-01-01",
+  "duration": "2:30",
+  "lyrics": "lyrics"
+}
