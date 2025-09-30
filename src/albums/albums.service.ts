@@ -12,11 +12,11 @@ export class AlbumsService {
     @InjectModel(Album.name) private albumModel: Model<AlbumDocument>,
   ) {}
 
-  async createAlbum(createAlbumDto: CreateAlbumDto) {
+  async create(createAlbumDto: CreateAlbumDto) {
     return this.albumModel.create(createAlbumDto);
   }
 
-  async findAlbums(): Promise<Album[]> {
+  async find(): Promise<Album[]> {
     const album = await this.albumModel
       .find()
       .populate('songs', null, Song.name)
