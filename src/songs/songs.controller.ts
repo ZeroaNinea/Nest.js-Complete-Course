@@ -1,5 +1,6 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Get, Body } from '@nestjs/common';
 
+import { Song } from '../common/schemas/song.model';
 import { CreateSongDto } from '../common/dto/create-song-dto';
 import { SongsService } from './songs.service';
 
@@ -13,5 +14,10 @@ export class SongsController {
     createSongDTO: CreateSongDto,
   ) {
     return this.songService.create(createSongDTO);
+  }
+
+  @Get()
+  find(): Promise<Song[]> {
+    return this.songService.find();
   }
 }
