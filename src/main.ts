@@ -23,7 +23,7 @@ async function bootstrap() {
   // await seedService.seed();
 
   /* Swagger */
-  // Swagger is needed to see your API paths and DTOs in the browser. Use it only in development.
+  // Swagger allows to see API paths, DTOs and visit API in the browser. Use it only in development.
   const config = new DocumentBuilder()
     .setTitle('Postgres')
     .setDescription('The Postgres API documentation.')
