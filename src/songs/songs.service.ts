@@ -27,4 +27,8 @@ export class SongsService {
 
     return song;
   }
+
+  async delete(id: string) {
+    return this.songModel.deleteOne({ _id: id });
+  }
 }

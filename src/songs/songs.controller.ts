@@ -1,4 +1,4 @@
-import { Controller, Post, Get, Body, Param } from '@nestjs/common';
+import { Controller, Post, Get, Body, Param, Delete } from '@nestjs/common';
 
 import { Song } from '../common/schemas/song.model';
 import { CreateSongDto } from '../common/dto/create-song-dto';
@@ -24,5 +24,10 @@ export class SongsController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.songService.findById(id);
+  }
+
+  @Delete(':id')
+  delete(@Param('id') id: string) {
+    return this.songService.delete(id);
   }
 }
