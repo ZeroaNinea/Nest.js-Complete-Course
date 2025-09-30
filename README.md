@@ -55,7 +55,7 @@ npm run migration:run
 - **`migration:run`**: Applies all pending migrations to the DB.
 - **`migration:revert:`** Rolls back the last migration.
 
-## Env Variables
+## Environment Variables
 
 ```bash
 # Application
