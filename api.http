@@ -1,0 +1,10 @@
+### Create a new song.
+POST http://localhost:3000/songs
+Content-Type: application/json
+
+{
+  "title": "Lasting Lover",
+  "releasedDate": "2020-01-01",
+  "duration": "3:40",
+  "lyrics": "lyrics"
+}
