@@ -1,18 +1,22 @@
-import { IsMilitaryTime, IsString } from 'class-validator';
-import { Type } from 'class-transformer';
+import { IsDateString, IsString, Matches, IsOptional } from 'class-validator';
 
 export class UpdateSongDto {
+  @IsOptional()
   @IsString()
   title: string;
 
-  @IsString()
-  @Type(() => Date)
+  @IsOptional()
+  @IsDateString()
   releaseDate: string;
 
+  @IsOptional()
   @IsString()
-  @Type(() => IsMilitaryTime)
-  duration: string;
+  @Matches(/^\d{2}:\d{2}$/, {
+    message: 'Duration must be in mm:ss format.',
+  })
+  duration: number;
 
+  @IsOptional()
   @IsString()
-  lyrics: string;
+  lyrics?: string;
 }

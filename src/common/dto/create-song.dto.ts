@@ -1,4 +1,10 @@
-import { IsMilitaryTime, IsNotEmpty, IsString } from 'class-validator';
+import {
+  IsDateString,
+  IsMilitaryTime,
+  IsNotEmpty,
+  IsString,
+  Matches,
+} from 'class-validator';
 import { Type } from 'class-transformer';
 
 export class CreateSongDto {
@@ -6,13 +12,15 @@ export class CreateSongDto {
   @IsNotEmpty()
   title: string;
 
-  @IsString()
+  @IsDateString()
   @IsNotEmpty()
   releaseDate: string;
 
   @IsString()
   @IsNotEmpty()
-  @Type(() => Date)
+  @Matches(/^\d{2}:\d{2}$/, {
+    message: 'Duration must be in mm:ss format.',
+  })
   duration: string;
 
   @IsString()
