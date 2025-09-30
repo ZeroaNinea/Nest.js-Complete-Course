@@ -55,6 +55,26 @@ npm run migration:run
 - **`migration:run`**: Applies all pending migrations to the DB.
 - **`migration:revert:`** Rolls back the last migration.
 
+## Env Variables
+
+```bash
+# Application
+PORT=3000
+
+# Database
+DB_DIALECT=postgres
+DB_USERNAME=postgres
+DB_PASSWORD=password
+DB_HOST=localhost
+DB PORT=5432
+DB_NAME=postgres
+DATABASE_URL=postgres://postgres:password@localhost:5432/postgres
+
+# Secret :3
+SECRET=HAD_12Xsilly@
+
+```
+
 ## Resources
 
 - **[Nest.js Documentation](https://docs.nestjs.com/)**
