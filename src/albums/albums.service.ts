@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
 import { Album, AlbumDocument } from '../common/schemas/album.model';
+import { CreateAlbumDto } from '../common/dto/create-album.dto';
 
 @Injectable()
 export class AlbumsService {
@@ -10,7 +11,7 @@ export class AlbumsService {
     @InjectModel(Album.name) private albumModel: Model<AlbumDocument>,
   ) {}
 
-  async createAlbum(createAlbumDto) {
+  async createAlbum(createAlbumDto: CreateAlbumDto) {
     return this.albumModel.create(createAlbumDto);
   }
 
