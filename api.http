@@ -40,3 +40,6 @@ Content-Type: application/json
     "68dbfa20f8d16b235239ae81"
   ]
 }
+
+### Find all albums.
+GET http://localhost:3000/albums
