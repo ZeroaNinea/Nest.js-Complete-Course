@@ -7,7 +7,6 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { SongsModule } from './songs/songs.module';
-import { AlbumModule } from './album/album.module';
 import { AlbumsModule } from './albums/albums.module';
 
 @Module({
@@ -28,7 +27,6 @@ import { AlbumsModule } from './albums/albums.module';
       }),
     }),
     SongsModule,
-    AlbumModule,
     AlbumsModule,
   ],
   controllers: [AppController],
