@@ -47,6 +47,13 @@ docker run --name mongodb \
 
 ```
 
+Execute the container:
+
+```bash
+docker exec -it mongodb mongosh -u mongo -p secret
+
+```
+
 Run the container again to restart the database:
 
 ```bash
