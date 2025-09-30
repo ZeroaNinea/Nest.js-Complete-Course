@@ -108,7 +108,7 @@ DATABASE_URL=postgres://postgres:password@localhost:5432/postgres
 SECRET=HAD_12Xsilly@
 
 # MongoDB
-MONGODB_URI=mongodb://mongo:secret@localhost:27017
+MONGODB_URI=mongodb://mongo:secret@localhost:27017/mongo?authSource=admin
 
 ```
 
