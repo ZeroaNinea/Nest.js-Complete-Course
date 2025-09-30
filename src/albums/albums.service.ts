@@ -4,6 +4,7 @@ import { Model } from 'mongoose';
 
 import { Album, AlbumDocument } from '../common/schemas/album.model';
 import { CreateAlbumDto } from '../common/dto/create-album.dto';
+import { Song } from '../common/schemas/song.model';
 
 @Injectable()
 export class AlbumsService {
@@ -16,7 +17,10 @@ export class AlbumsService {
   }
 
   async findAlbums(): Promise<Album[]> {
-    const album = await this.albumModel.find().exec();
+    const album = await this.albumModel
+      .find()
+      .populate('songs', null, Song.name)
+      .exec();
 
     if (!album) {
       throw new HttpException('Album not found.', HttpStatus.NOT_FOUND);
