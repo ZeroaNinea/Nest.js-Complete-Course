@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
@@ -16,5 +16,15 @@ export class SongsService {
 
   async find(): Promise<Song[]> {
     return this.songModel.find().exec();
+  }
+
+  async findById(id: string): Promise<Song> {
+    const song = await this.songModel.findById(id).exec();
+
+    if (!song) {
+      throw new HttpException('Song not found.', HttpStatus.NOT_FOUND);
+    }
+
+    return song;
   }
 }
