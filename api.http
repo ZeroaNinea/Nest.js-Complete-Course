@@ -32,3 +32,11 @@ Content-Type: application/json
 ### Create album.
 POST http://localhost:3000/albums
 Content-Type: application/json
+
+{
+  "title": "Dance",
+  "songs": [
+    "68dbf959f8d16b235239ae7f",
+    "68dbfa20f8d16b235239ae81"
+  ]
+}
