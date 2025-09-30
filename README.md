@@ -107,6 +107,9 @@ DATABASE_URL=postgres://postgres:password@localhost:5432/postgres
 # Secret :3
 SECRET=HAD_12Xsilly@
 
+# MongoDB
+MONGODB_URI=mongodb://mongo:secret@localhost:27017
+
 ```
 
 ## Resources
