@@ -20,6 +20,7 @@ export class Song {
   })
   duration: string;
 
+  @Prop()
   lyrics: string;
 }
 
