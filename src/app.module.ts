@@ -41,7 +41,7 @@ const proConfig = { port: 4000 };
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: ['.env.development.local', '.env.production.local'],
+      envFilePath: `.env.${configurations().node_env}.local`,
       isGlobal: true,
       // validationSchema: Joi.object({
       //   DB_HOST: Joi.string().required(),
