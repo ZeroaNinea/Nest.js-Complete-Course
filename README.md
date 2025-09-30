@@ -40,6 +40,9 @@ docker stop postgres
 
 ```bash
 docker run --name mongodb \
+  -e MONGO_INITDB_ROOT_USERNAME=mongo \
+  -e MONGO_INITDB_ROOT_PASSWORD=secret \
+  -v mongo_data:/data/db \
   -p 27017:27017 \
   -d mongo
 
