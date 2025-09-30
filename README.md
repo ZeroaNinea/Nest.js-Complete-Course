@@ -66,7 +66,7 @@ DB_DIALECT=postgres
 DB_USERNAME=postgres
 DB_PASSWORD=password
 DB_HOST=localhost
-DB PORT=5432
+DB_PORT=5432
 DB_NAME=postgres
 DATABASE_URL=postgres://postgres:password@localhost:5432/postgres
 
