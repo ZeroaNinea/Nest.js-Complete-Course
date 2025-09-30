@@ -20,6 +20,7 @@ import {
 import { IPaginationMeta, Pagination } from 'nestjs-typeorm-paginate';
 
 import { DeleteResult, UpdateResult } from 'typeorm';
+import { ApiTags } from '@nestjs/swagger';
 
 import { Song } from '../common/entities/song.entity';
 
@@ -35,6 +36,7 @@ import type { Connection } from '../common/constants/connection';
   'songs',
   // { path: 'songs', scope: Scope.REQUEST }
 )
+@ApiTags('songs')
 export class SongsController {
   constructor(
     private readonly songsService: SongsService,
