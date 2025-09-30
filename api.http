@@ -11,3 +11,6 @@ Content-Type: application/json
 
 ### Get all songs.
 GET http://localhost:3000/songs
+
+### Get song by id.
+GET http://localhost:3000/songs/68dbf959f8d16b235239ae7f
