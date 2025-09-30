@@ -8,3 +8,6 @@ Content-Type: application/json
   "duration": "2:30",
   "lyrics": "lyrics"
 }
+
+### Get all songs.
+GET http://localhost:3000/songs
