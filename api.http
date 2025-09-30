@@ -3,8 +3,8 @@ POST http://localhost:3000/songs
 Content-Type: application/json
 
 {
-  "title": "Lasting Lover",
+  "title": "Love Me",
   "releasedDate": "2020-01-01",
-  "duration": "3:40",
+  "duration": "2:30",
   "lyrics": "lyrics"
 }
