@@ -28,3 +28,7 @@ Content-Type: application/json
   "duration": "2:30",
   "lyrics": "lyrics"
 }
+
+### Create album.
+POST http://localhost:3000/albums
+Content-Type: application/json
