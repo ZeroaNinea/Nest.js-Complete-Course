@@ -31,7 +31,7 @@ export class SongsController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id') id: string): Promise<Song> {
     return this.songService.findById(id);
   }
 

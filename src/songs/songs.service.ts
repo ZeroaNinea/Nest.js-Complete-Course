@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { DeleteResult, Model, UpdateResult } from 'mongoose';
 
 import { Song, SongDocument } from '../common/schemas/song.model';
 import { CreateSongDto } from '../common/dto/create-song.dto';
@@ -29,11 +29,14 @@ export class SongsService {
     return song;
   }
 
-  async delete(id: string) {
+  async delete(id: string): Promise<DeleteResult> {
     return this.songModel.deleteOne({ _id: id });
   }
 
-  async update(id: string, updateSongDto: UpdateSongDto) {
+  async update(
+    id: string,
+    updateSongDto: UpdateSongDto,
+  ): Promise<UpdateResult> {
     return this.songModel.updateOne({ _id: id }, updateSongDto);
   }
 }
