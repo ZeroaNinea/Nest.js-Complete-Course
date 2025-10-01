@@ -16,7 +16,7 @@ import { connection } from '../common/constants/connection';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Song, Artist])],
-  controllers: [SongsController],
+  // controllers: [SongsController],
   providers: [
     SongsService,
     // {

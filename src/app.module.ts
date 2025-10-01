@@ -70,7 +70,7 @@ const proConfig = { port: 4000 };
     //   }),
     // }),
     TypeOrmModule.forRoot(dataSourceOptions),
-    // SongsModule,
+    SongsModule,
     AuthModule,
     UserModule,
     ArtistsModule,
@@ -90,9 +90,10 @@ const proConfig = { port: 4000 };
   ],
 })
 export class AppModule /* implements NestModule */ {
-  // constructor(private dataSource: DataSource) {
-  //   console.log('dbName', dataSource.driver.database);
-  // }
+  constructor(private dataSource: DataSource) {
+    console.log('dbName', dataSource.driver.database);
+  }
+
   // configure(consumer: MiddlewareConsumer) {
   //   // consumer.apply(LoggerMiddleware).forRoutes('songs');
   //   // consumer.apply(LoggerMiddleware).forRoutes({
