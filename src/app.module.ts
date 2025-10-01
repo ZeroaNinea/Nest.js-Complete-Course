@@ -89,17 +89,17 @@ const proConfig = { port: 4000 };
     },
   ],
 })
-export class AppModule /* implements NestModule */ {
+export class AppModule implements NestModule {
   constructor(private dataSource: DataSource) {
     console.log('dbName', dataSource.driver.database);
   }
 
-  // configure(consumer: MiddlewareConsumer) {
-  //   // consumer.apply(LoggerMiddleware).forRoutes('songs');
-  //   // consumer.apply(LoggerMiddleware).forRoutes({
-  //   //   path: 'songs',
-  //   //   method: RequestMethod.POST,
-  //   // });
-  //   consumer.apply(LoggerMiddleware).forRoutes(SongsController);
-  // }
+  configure(consumer: MiddlewareConsumer) {
+    // consumer.apply(LoggerMiddleware).forRoutes('songs');
+    // consumer.apply(LoggerMiddleware).forRoutes({
+    //   path: 'songs',
+    //   method: RequestMethod.POST,
+    // });
+    consumer.apply(LoggerMiddleware).forRoutes(SongsController);
+  }
 }

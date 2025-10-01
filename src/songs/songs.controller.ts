@@ -50,11 +50,11 @@ export class SongsController {
   @Post()
   @UseGuards(ArtistsJwtGuard)
   create(
-    @Body() CreateSongDto: CreateSongDto,
+    @Body() createSongDto: CreateSongDto,
     @Request() request: { user: { id: number; email: string } },
-  ): Promise<Song> {
+  ): Promise<any> {
     console.log('Request user', request.user);
-    return this.songsService.create(CreateSongDto);
+    return this.songsService.create(createSongDto);
   }
 
   @Get()
@@ -73,7 +73,7 @@ export class SongsController {
       new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
     )
     id: number,
-  ): Promise<Song> {
+  ): Promise<any> {
     return await this.songsService.findOne(id);
   }
 
