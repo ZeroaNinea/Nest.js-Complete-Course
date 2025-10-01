@@ -14,7 +14,7 @@ export default () => ({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   autoLoadEntities: true,
-  synchronize: true,
+  synchronize: false,
   entities: [Song, Artist, User, Playlist],
   secret: process.env.JWT_SECRET,
   node_env: process.env.NODE_ENV,
