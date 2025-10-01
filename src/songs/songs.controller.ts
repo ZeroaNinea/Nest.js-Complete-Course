@@ -52,7 +52,7 @@ export class SongsController {
   create(
     @Body() createSongDto: CreateSongDto,
     @Request() request: { user: { id: number; email: string } },
-  ): Promise<Partial<Song>> {
+  ): Promise<Song | null> {
     console.log('Request user', request.user);
     return this.songsService.create(createSongDto);
   }
@@ -73,7 +73,7 @@ export class SongsController {
       new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
     )
     id: number,
-  ): Promise<Partial<Song>> {
+  ): Promise<Song | null> {
     return this.songsService.findOne(id);
   }
 
