@@ -19,7 +19,7 @@ export const dataSourceOptions: DataSourceOptions = {
   // username: process.env.DB_USERNAME,
   // password: process.env.DB_PASSWORD,
   // database: process.env.DB_NAME,
-  // entities: [Song, Artist, User, Playlist],
+  // entities: [Artist, User, Playlist],
   // migrations: ['dist/db/migrations/*.js'],
   // synchronize: false,
   type: 'postgres',
