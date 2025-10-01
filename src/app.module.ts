@@ -69,24 +69,24 @@ const proConfig = { port: 4000 };
     //     entities: [Song, Artist, User, Playlist],
     //   }),
     // }),
-    // TypeOrmModule.forRoot(dataSourceOptions),
+    TypeOrmModule.forRoot(dataSourceOptions),
     // SongsModule,
-    // AuthModule,
-    // UserModule,
-    // ArtistsModule,
-    // UuidModule,
-    // SeedModule,
+    AuthModule,
+    UserModule,
+    ArtistsModule,
+    UuidModule,
+    SeedModule,
   ],
-  // controllers: [AppController],
+  controllers: [AppController],
   providers: [
-    // AppService,
-    // DevConfigService,
-    // {
-    //   provide: 'CONFIG',
-    //   useFactory: () => {
-    //     return process.env.NODE_ENV === 'development' ? devConfig : proConfig;
-    //   },
-    // },
+    AppService,
+    DevConfigService,
+    {
+      provide: 'CONFIG',
+      useFactory: () => {
+        return process.env.NODE_ENV === 'development' ? devConfig : proConfig;
+      },
+    },
   ],
 })
 export class AppModule /* implements NestModule */ {
