@@ -31,17 +31,14 @@ import { UserModule } from './user/user.module';
 import { ArtistsModule } from './artists/artists.module';
 import { dataSourceOptions } from './db/data-source';
 import { SeedModule } from './seed/seed.module';
-import configurations from './config/configurations';
+// import configurations from './config/configurations';
 
 import { validate } from 'env.validation';
-
-const devConfig = { port: 3000 };
-const proConfig = { port: 4000 };
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: `.env.${configurations().node_env}.local`,
+      envFilePath: `.env.${process.env.NODE_ENV}.local`,
       isGlobal: true,
       // validationSchema: Joi.object({
       //   DB_HOST: Joi.string().required(),
@@ -50,7 +47,7 @@ const proConfig = { port: 4000 };
       //   DB_PASSWORD: Joi.string().required(),
       //   DB_NAME: Joi.string().required(),
       // }),
-      load: [configurations],
+      // load: [configurations],
       validate: validate,
     }),
     // TypeOrmModule.forRootAsync({
@@ -85,7 +82,9 @@ const proConfig = { port: 4000 };
     {
       provide: 'CONFIG',
       useFactory: () => {
-        return process.env.NODE_ENV === 'development' ? devConfig : proConfig;
+        return process.env.NODE_ENV === 'development'
+          ? { port: 3000 }
+          : { port: 4000 };
       },
     },
   ],
