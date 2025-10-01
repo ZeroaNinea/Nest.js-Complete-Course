@@ -20,7 +20,7 @@ import { UpdateSongDto } from './dto/update-song.dto';
 //   scope: Scope.TRANSIENT,
 // }
 export class SongsService {
-  private readonly songs: Song[] = [];
+  // private readonly songs: Song[] = [];
 
   constructor(
     @InjectRepository(Song)
@@ -43,7 +43,7 @@ export class SongsService {
 
     newSong.artists = artists;
 
-    return this.songsRepository.save(newSong);
+    return await this.songsRepository.save(newSong);
   }
 
   findAll(): Promise<Song[]> {

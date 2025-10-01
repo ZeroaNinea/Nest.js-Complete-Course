@@ -52,7 +52,7 @@ export class SongsController {
   create(
     @Body() createSongDto: CreateSongDto,
     @Request() request: { user: { id: number; email: string } },
-  ): Promise<any> {
+  ): Promise<Song> {
     console.log('Request user', request.user);
     return this.songsService.create(createSongDto);
   }
