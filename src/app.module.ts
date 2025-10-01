@@ -4,7 +4,10 @@ import {
   NestModule,
   // RequestMethod,
 } from '@nestjs/common';
-import { ConfigModule /* ConfigService */ } from '@nestjs/config';
+import {
+  ConfigModule,
+  // ConfigService
+} from '@nestjs/config';
 
 import { UuidModule } from 'nestjs-uuid';
 // import Joi from 'joi';
@@ -28,14 +31,17 @@ import { UserModule } from './user/user.module';
 import { ArtistsModule } from './artists/artists.module';
 import { dataSourceOptions } from './db/data-source';
 import { SeedModule } from './seed/seed.module';
-// import configurations from './config/configurations';
+import configurations from './config/configurations';
 
 import { validate } from 'env.validation';
+
+const devConfig = { port: 3000 };
+const proConfig = { port: 4000 };
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: `.env.${process.env.NODE_ENV}.local`,
+      envFilePath: `.env.${configurations().node_env}.local`,
       isGlobal: true,
       // validationSchema: Joi.object({
       //   DB_HOST: Joi.string().required(),
@@ -63,42 +69,36 @@ import { validate } from 'env.validation';
     //     entities: [Song, Artist, User, Playlist],
     //   }),
     // }),
-    TypeOrmModule.forRoot(dataSourceOptions),
-    SongsModule,
-    AuthModule,
-    UserModule,
-    ArtistsModule,
-    UuidModule,
-    SeedModule,
+    // TypeOrmModule.forRoot(dataSourceOptions),
+    // SongsModule,
+    // AuthModule,
+    // UserModule,
+    // ArtistsModule,
+    // UuidModule,
+    // SeedModule,
   ],
-  controllers: [AppController],
+  // controllers: [AppController],
   providers: [
-    AppService,
-    DevConfigService,
-
-    {
-      provide: 'CONFIG',
-      useFactory: () => {
-        return process.env.NODE_ENV === 'development'
-          ? { port: 3000 }
-          : { port: 4000 };
-      },
-    },
+    // AppService,
+    // DevConfigService,
+    // {
+    //   provide: 'CONFIG',
+    //   useFactory: () => {
+    //     return process.env.NODE_ENV === 'development' ? devConfig : proConfig;
+    //   },
+    // },
   ],
 })
-export class AppModule implements NestModule {
-  constructor(private dataSource: DataSource) {
-    console.log('dbName', dataSource.driver.database);
-  }
-
-  configure(consumer: MiddlewareConsumer) {
-    // consumer.apply(LoggerMiddleware).forRoutes('songs');
-
-    // consumer.apply(LoggerMiddleware).forRoutes({
-    //   path: 'songs',
-    //   method: RequestMethod.POST,
-    // });
-
-    consumer.apply(LoggerMiddleware).forRoutes(SongsController);
-  }
+export class AppModule /* implements NestModule */ {
+  // constructor(private dataSource: DataSource) {
+  //   console.log('dbName', dataSource.driver.database);
+  // }
+  // configure(consumer: MiddlewareConsumer) {
+  //   // consumer.apply(LoggerMiddleware).forRoutes('songs');
+  //   // consumer.apply(LoggerMiddleware).forRoutes({
+  //   //   path: 'songs',
+  //   //   method: RequestMethod.POST,
+  //   // });
+  //   consumer.apply(LoggerMiddleware).forRoutes(SongsController);
+  // }
 }
