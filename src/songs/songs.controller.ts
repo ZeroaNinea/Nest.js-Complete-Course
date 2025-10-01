@@ -49,7 +49,7 @@ export class SongsController {
 
   @Post()
   @UseGuards(ArtistsJwtGuard)
-  create(
+  async create(
     @Body() createSongDto: CreateSongDto,
     @Request() request: { user: { id: number; email: string } },
   ): Promise<Song | null> {
