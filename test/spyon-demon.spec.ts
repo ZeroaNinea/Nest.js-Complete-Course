@@ -26,7 +26,7 @@ describe('spyOn Demo', () => {
     const artist = new ArtistRepository();
     const spy = jest
       .spyOn(artist, 'save')
-      .mockImplementation((createArtistDto) => createArtistDto);
+      .mockImplementation((createArtistDto) => ({ ...createArtistDto, id: 1 }));
 
     artist.save({ name: 'test' });
 
