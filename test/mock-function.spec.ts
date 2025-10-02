@@ -1,3 +1,5 @@
+import { mock } from 'node:test';
+
 describe('Mock Function Examples', () => {
   it('should create a basic mock function', () => {
     const mockFn = jest.fn();
@@ -7,5 +9,12 @@ describe('Mock Function Examples', () => {
     expect(mockFn).toHaveBeenCalled();
     expect(mockFn.mock.calls.length).toBe(1);
     expect(mockFn()).toBe(1);
+  });
+
+  it('should create a mock function with an argument', () => {
+    const mockFn = jest.fn((createSongDto) => createSongDto);
+    mockFn.mockReturnValue({ title: 'test', id: 1 });
+
+    expect(mockFn({ title: 'test', id: 1 })).toEqual({ title: 'test', id: 1 });
   });
 });
