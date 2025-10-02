@@ -35,4 +35,12 @@ describe('Mock Function Examples', () => {
     expect(fetchSongs()).resolves.toEqual([{ id: 1, title: 'test' }]);
     expect(fetchSongs()).resolves.toHaveLength(1);
   });
+
+  it('should spy on a function', () => {
+    const fetchSongs = jest.fn();
+    fetchSongs.mockResolvedValue([{ id: 1, title: 'test' }]);
+
+    expect(fetchSongs()).resolves.toEqual([{ id: 1, title: 'test' }]);
+    expect(fetchSongs()).resolves.toHaveLength(1);
+  });
 });
