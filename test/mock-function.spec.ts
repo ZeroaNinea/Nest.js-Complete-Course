@@ -10,7 +10,10 @@ describe('Mock Function Examples', () => {
   });
 
   it('should create a mock function with an argument', () => {
-    const mockFn = jest.fn((createSongDto) => createSongDto);
+    const mockFn = jest.fn((createSongDto) => ({
+      ...createSongDto,
+      id: 1,
+    }));
     mockFn.mockReturnValue({ title: 'test', id: 1 });
 
     expect(mockFn({ title: 'test' })).toEqual({ title: 'test', id: 1 });
