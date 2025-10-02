@@ -1,0 +1,8 @@
+# Environment Variables
+.env
+.env.development.local
+.env.production.local
+
+# Node
+/node_modules
+/dist
