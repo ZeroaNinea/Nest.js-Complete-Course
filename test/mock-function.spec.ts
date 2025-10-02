@@ -5,6 +5,7 @@ describe('Mock Function Examples', () => {
     mockFn();
 
     expect(mockFn).toHaveBeenCalled();
+    expect(mockFn.mock.calls.length).toBe(1);
     expect(mockFn()).toBe(1);
   });
 });
