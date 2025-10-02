@@ -12,5 +12,9 @@ const songRepository = {
 describe('spyOn Demo', () => {
   it('should spy on the existing object', () => {
     const spy = jest.spyOn(songRepository, 'create');
+    songRepository.create({ title: 'test' });
+
+    expect(spy).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalledWith({ title: 'test' });
   });
 });
