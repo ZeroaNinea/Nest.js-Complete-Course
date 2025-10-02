@@ -31,6 +31,7 @@ describe('spyOn Demo', () => {
     artist.save({ name: 'test' });
 
     expect(spy).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalledTimes(1);
     expect(spy).toHaveBeenCalledWith({ name: 'test' });
   });
 
