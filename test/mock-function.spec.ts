@@ -18,4 +18,13 @@ describe('Mock Function Examples', () => {
 
     expect(mockFn({ title: 'test' })).toEqual({ title: 'test', id: 1 });
   });
+
+  it('should create a mock function with an argument with mock implementation', () => {
+    const mockCreateSong = jest.fn((createSongDto) => ({
+      ...createSongDto,
+      id: 1,
+    }));
+
+    expect(mockCreateSong({ title: 'test' })).toEqual({ title: 'test', id: 1 });
+  });
 });
