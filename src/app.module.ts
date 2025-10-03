@@ -33,7 +33,7 @@ import { dataSourceOptions } from './db/data-source';
 import { SeedModule } from './seed/seed.module';
 import configurations from './config/configurations';
 
-import { validate } from 'env.validation';
+import { validate } from './db/env.validation';
 
 @Module({
   imports: [
