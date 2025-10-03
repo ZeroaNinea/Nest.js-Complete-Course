@@ -5,6 +5,7 @@ import request from 'supertest';
 import { App } from 'supertest/types';
 
 import { AppModule } from './../src/app.module';
+import { DevConfigService } from '../src/common/services/dev-config/dev-config.service';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication<App>;
@@ -22,6 +23,10 @@ describe('AppController (e2e)', () => {
     return request(app.getHttpServer())
       .get('/')
       .expect(200)
-      .expect('Hello World!');
+      .expect(
+        `Hello World! ${new DevConfigService().getDBHost()} ${
+          process.env.NODE_ENV === 'development' ? 3000 : 4000
+        }`,
+      );
   });
 });
