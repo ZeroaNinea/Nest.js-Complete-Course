@@ -35,9 +35,6 @@ import configurations from './config/configurations';
 
 import { validate } from 'env.validation';
 
-const devConfig = { port: 3000 };
-const proConfig = { port: 4000 };
-
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -84,7 +81,9 @@ const proConfig = { port: 4000 };
     {
       provide: 'CONFIG',
       useFactory: () => {
-        return process.env.NODE_ENV === 'development' ? devConfig : proConfig;
+        return process.env.NODE_ENV === 'development'
+          ? { port: 3000 }
+          : { port: 4000 };
       },
     },
   ],
