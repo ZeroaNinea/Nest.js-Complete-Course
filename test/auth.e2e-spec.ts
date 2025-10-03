@@ -1,15 +1,23 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { UuidService } from 'nestjs-uuid';
 
 import { TypeOrmModule } from '@nestjs/typeorm';
-
-import { User } from '../src/common/entities/user.entity';
-import { Artist } from '../src/common/entities/artist.entity';
 
 import request from 'supertest';
 import { App } from 'supertest/types';
 
+import { User } from '../src/common/entities/user.entity';
+import { Artist } from '../src/common/entities/artist.entity';
+
+import { ApiKeyStrategy } from '../src/auth/api-key.strategy';
+
 import { AuthModule } from '../src/auth/auth.module';
+import { AuthService } from '../src/auth/auth.service';
+import { UserService } from '../src/user/user.service';
+import { JwtStrategy } from '../src/auth/jwt.strategy';
+import { ArtistsService } from '../src/artists/artists.service';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication<App>;
@@ -17,6 +25,15 @@ describe('AppController (e2e)', () => {
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [TypeOrmModule.forFeature([User, Artist]), AuthModule],
+      providers: [
+        AuthService,
+        UserService,
+        JwtStrategy,
+        ArtistsService,
+        UuidService,
+        ApiKeyStrategy,
+        ConfigService,
+      ],
     }).compile();
 
     app = moduleFixture.createNestApplication();
