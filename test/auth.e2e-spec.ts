@@ -7,6 +7,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule } from '@nestjs/config';
 
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { DataSource } from 'typeorm';
 
 import request from 'supertest';
 import { App } from 'supertest/types';
@@ -26,6 +27,12 @@ import { ArtistsService } from '../src/artists/artists.service';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication<App>;
+  const dataSource = new DataSource({
+    type: 'sqlite',
+    database: ':memory:',
+    entities: [User, Artist, Playlist, Song],
+    synchronize: true,
+  });
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -60,6 +67,13 @@ describe('AppController (e2e)', () => {
 
     app = moduleFixture.createNestApplication();
     await app.init();
+  });
+
+  afterAll(async () => {
+    const repositories = dataSource.entityMetadatas.map((entity) =>
+      dataSource.getRepository(entity.name),
+    );
+    await Promise.all(repositories.map((repository) => repository.clear()));
   });
 
   it('/ (GET)', () => {

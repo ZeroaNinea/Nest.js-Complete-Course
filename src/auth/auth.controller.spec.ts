@@ -18,11 +18,16 @@ import { ArtistsService } from '../artists/artists.service';
 
 import { CreateUserDto } from '../user/dto/create-user.dto';
 import { PopulatedUser } from '../common/interface/populated-user.interface';
-import { dataSourceOptions } from '../db/data-source';
+// import { dataSourceOptions } from '../db/data-source';
 
 describe('AuthController', () => {
   let controller: AuthController;
-  const dataSource = new DataSource(dataSourceOptions);
+  const dataSource = new DataSource({
+    type: 'sqlite',
+    database: ':memory:',
+    entities: [User, Artist, Playlist, Song],
+    synchronize: true,
+  });
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
