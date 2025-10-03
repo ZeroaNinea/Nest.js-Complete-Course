@@ -40,7 +40,7 @@ describe('AppController (e2e)', () => {
           imports: [ConfigModule],
           inject: [ConfigService],
           useFactory: (configService: ConfigService) => ({
-            secret: configService.get<string>('SECRET'),
+            secretOrKey: configService.get<string>('JWT_SECRET') || '',
             signOptions: { expiresIn: '1d' },
           }),
         }),
