@@ -1,48 +1,21 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { DataSource } from 'typeorm';
-
-import { User } from '../src/common/entities/user.entity';
-import { Artist } from '../src/common/entities/artist.entity';
-import { Playlist } from '../src/common/entities/playlist.entity';
-import { Song } from '../src/common/entities/song.entity';
-
 import request from 'supertest';
 import { App } from 'supertest/types';
 
 import { AuthModule } from '../src/auth/auth.module';
 
-import { dataSourceOptions } from '../src/db/data-source';
-
 describe('AppController (e2e)', () => {
   let app: INestApplication<App>;
-  const dataSource = new DataSource(dataSourceOptions);
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [
-        TypeOrmModule.forRoot({
-          type: 'sqlite',
-          database: ':memory:',
-          entities: [User, Artist, Playlist, Song],
-          synchronize: true,
-        }),
-        TypeOrmModule.forFeature([User, Artist]),
-        AuthModule,
-      ],
+      imports: [AuthModule],
     }).compile();
 
     app = moduleFixture.createNestApplication();
     await app.init();
-  });
-
-  afterAll(async () => {
-    const repositories = dataSource.entityMetadatas.map((entity) =>
-      dataSource.getRepository(entity.name),
-    );
-    await Promise.all(repositories.map((repository) => repository.clear()));
   });
 
   it('/ (GET)', () => {
