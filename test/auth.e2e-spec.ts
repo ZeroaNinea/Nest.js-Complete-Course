@@ -54,7 +54,7 @@ describe('AppController (e2e)', () => {
         email: 'john@example.com',
         password: '12345',
       })
-      .expect(200)
+      .expect(201)
       .expect('Content-Type', /json/)
       .then((res) => {
         expect(res.body).toHaveProperty('id');
