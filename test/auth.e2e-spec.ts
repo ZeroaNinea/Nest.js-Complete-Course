@@ -1,6 +1,11 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 
+import { TypeOrmModule } from '@nestjs/typeorm';
+
+import { User } from '../src/common/entities/user.entity';
+import { Artist } from '../src/common/entities/artist.entity';
+
 import request from 'supertest';
 import { App } from 'supertest/types';
 
@@ -11,7 +16,7 @@ describe('AppController (e2e)', () => {
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AuthModule],
+      imports: [TypeOrmModule.forFeature([User, Artist]), AuthModule],
     }).compile();
 
     app = moduleFixture.createNestApplication();
