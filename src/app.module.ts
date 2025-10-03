@@ -33,6 +33,7 @@ import { SeedModule } from './seed/seed.module';
 import configurations from './config/configurations';
 
 import { validate } from './db/env.validation';
+import { EventsModule } from './events/events.module';
 
 @Module({
   imports: [
@@ -84,6 +85,7 @@ import { validate } from './db/env.validation';
     ArtistsModule,
     UuidModule,
     SeedModule,
+    EventsModule,
   ],
   controllers: [AppController],
   providers: [
