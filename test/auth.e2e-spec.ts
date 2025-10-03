@@ -3,6 +3,9 @@ import { INestApplication } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { UuidService } from 'nestjs-uuid';
 
+import { JwtModule } from '@nestjs/jwt';
+import { ConfigModule } from '@nestjs/config';
+
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import request from 'supertest';
@@ -10,6 +13,8 @@ import { App } from 'supertest/types';
 
 import { User } from '../src/common/entities/user.entity';
 import { Artist } from '../src/common/entities/artist.entity';
+import { Playlist } from '../src/common/entities/playlist.entity';
+import { Song } from '../src/common/entities/song.entity';
 
 import { ApiKeyStrategy } from '../src/auth/api-key.strategy';
 
@@ -24,7 +29,24 @@ describe('AppController (e2e)', () => {
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [TypeOrmModule.forFeature([User, Artist]), AuthModule],
+      imports: [
+        TypeOrmModule.forRoot({
+          type: 'sqlite',
+          database: ':memory:',
+          entities: [User, Artist, Song, Playlist],
+          synchronize: true,
+        }),
+        JwtModule.registerAsync({
+          imports: [ConfigModule],
+          inject: [ConfigService],
+          useFactory: (configService: ConfigService) => ({
+            secret: configService.get<string>('SECRET'),
+            signOptions: { expiresIn: '1d' },
+          }),
+        }),
+        TypeOrmModule.forFeature([User, Artist]),
+        AuthModule,
+      ],
       providers: [
         AuthService,
         UserService,

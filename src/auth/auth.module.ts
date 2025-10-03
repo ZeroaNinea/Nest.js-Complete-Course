@@ -26,11 +26,11 @@ import { ApiKeyStrategy } from './api-key.strategy';
     // }),
     JwtModule.registerAsync({
       imports: [ConfigModule],
+      inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         secret: configService.get<string>('SECRET'),
         signOptions: { expiresIn: '1d' },
       }),
-      inject: [ConfigService],
     }),
   ],
   providers: [
