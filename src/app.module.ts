@@ -6,10 +6,13 @@ import {
 } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
-// import path from 'path';
+import path from 'path';
 
 import { UuidModule } from 'nestjs-uuid';
 // import Joi from 'joi';
+
+import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloDriver } from '@nestjs/apollo';
 
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
@@ -78,6 +81,14 @@ import { EventsModule } from './events/events.module';
               synchronize: true,
               entities: [User, Artist, Song, Playlist],
             },
+    }),
+    GraphQLModule.forRoot({
+      driver: ApolloDriver,
+      typePaths: ['./**/*.graphql'],
+      definitions: {
+        path: path.join(process.cwd(), 'src/graphql.ts'),
+        outputAs: 'class',
+      },
     }),
     SongsModule,
     AuthModule,
