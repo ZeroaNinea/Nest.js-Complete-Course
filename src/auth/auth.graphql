@@ -30,7 +30,7 @@ input LoginInput {
   password: String!
 }
 
-input SignupResponse {
+type SignupResponse {
   email: String!
 }
 

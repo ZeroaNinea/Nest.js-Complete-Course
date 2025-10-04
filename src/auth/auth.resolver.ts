@@ -15,13 +15,9 @@ export class AuthResolver {
   ) {}
 
   @Mutation('signup')
-  async signupUser(
+  signupUser(
     @Args('signupInput') signupInput: SignupInput,
   ): Promise<SignupResponse> {
-    const user = await this.userService.create(signupInput as CreateUserDto);
-
-    return {
-      email: user.email,
-    };
+    return this.userService.create(signupInput as CreateUserDto);
   }
 }

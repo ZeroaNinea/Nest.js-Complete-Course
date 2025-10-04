@@ -20,10 +20,6 @@ export class LoginInput {
     password: string;
 }
 
-export class SignupResponse {
-    email: string;
-}
-
 export class CreateSongInput {
     title: string;
     artists?: Nullable<number[]>;
@@ -70,6 +66,10 @@ export abstract class IMutation {
     abstract updateSong(id: string, updateSongInput: UpdateSongInput): UpdateResult | Promise<UpdateResult>;
 
     abstract deleteSong(id: string): Nullable<DeleteResult> | Promise<Nullable<DeleteResult>>;
+}
+
+export class SignupResponse {
+    email: string;
 }
 
 export class LoginResponse {
