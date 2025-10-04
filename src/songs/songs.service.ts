@@ -52,6 +52,15 @@ export class SongsService {
     const newSong = new Song();
 
     newSong.title = song.title;
+    newSong.releasedDate = new Date(song.releasedDate);
+    newSong.duration = song.duration;
+    newSong.lyrics = song.lyrics;
+
+    const artists = await this.artistRepository.findBy({
+      id: In(song.artists!),
+    });
+
+    newSong.artists = artists;
 
     return await this.songsRepository.save(newSong);
   }

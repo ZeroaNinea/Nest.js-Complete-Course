@@ -16,6 +16,10 @@ type Mutation {
 
 input CreateSongInput {
   title: String!
+  artists: [Int!]
+  releasedDate: String!
+  duration: String!
+  lyrics: String!
 }
 
 input UpdateSongInput {
