@@ -55,6 +55,15 @@ npm run migration:run
 - **`migration:run`**: Applies all pending migrations to the DB.
 - **`migration:revert:`** Rolls back the last migration.
 
+## GraphQL
+
+Generate Typings:
+
+```bash
+npx ts-node generate-typings
+
+```
+
 ## Environment Variables
 
 ```bash
