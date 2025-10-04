@@ -15,7 +15,7 @@ type Mutation {
 }
 
 input CreateSongInput {
-  id: Int
+  id: Int!
   title: String!
   artists: [Int]
   releasedDate: String
@@ -24,7 +24,7 @@ input CreateSongInput {
 }
 
 input UpdateSongInput {
-  id: Int
+  id: Int!
   title: String
   artists: [Int]
   releasedDate: String

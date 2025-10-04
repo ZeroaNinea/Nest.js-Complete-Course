@@ -9,11 +9,21 @@
 /* eslint-disable */
 
 export class CreateSongInput {
+    id: number;
     title: string;
+    artists?: Nullable<Nullable<number>[]>;
+    releasedDate?: Nullable<string>;
+    duration?: Nullable<string>;
+    lyrics?: Nullable<string>;
 }
 
 export class UpdateSongInput {
+    id: number;
     title?: Nullable<string>;
+    artists?: Nullable<Nullable<number>[]>;
+    releasedDate?: Nullable<string>;
+    duration?: Nullable<string>;
+    lyrics?: Nullable<string>;
 }
 
 export class Song {

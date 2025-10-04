@@ -2,8 +2,7 @@ import { Resolver, Query, Args, Mutation } from '@nestjs/graphql';
 
 import { SongsService } from './songs.service';
 
-import { Song } from '../common/entities/song.entity';
-import { CreateSongDto } from './dto/create-song.dto';
+import { CreateSongInput, Song } from '../graphql';
 
 @Resolver()
 export class SongsResolver {
@@ -20,7 +19,7 @@ export class SongsResolver {
   }
 
   @Mutation('createSong')
-  async createSong(@Args('song') song: CreateSongDto): Promise<Song> {
+  async createSong(@Args('song') song: CreateSongInput): Promise<Song> {
     return this.songsService.create(song);
   }
 }
