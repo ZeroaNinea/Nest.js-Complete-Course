@@ -87,13 +87,6 @@ export class SongsService {
     return this.songsRepository.update(id, recordToUpdate);
   }
 
-  updateGraph(
-    id: number,
-    recordToUpdate: UpdateSongDto,
-  ): Promise<UpdateResult> {
-    return this.songsRepository.update(id, recordToUpdate);
-  }
-
   async paginate(options: IPaginationOptions): Promise<Pagination<Song>> {
     const queryBuilder = this.songsRepository.createQueryBuilder('c');
     queryBuilder.orderBy('c.releasedDate', 'DESC');
