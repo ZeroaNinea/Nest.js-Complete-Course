@@ -1,11 +1,14 @@
 import { Resolver, Query, Args, Mutation } from '@nestjs/graphql';
 
-import { UpdateResult } from 'typeorm';
-
 import { SongsService } from './songs.service';
 
 import { Song } from '../common/entities/song.entity';
-import { CreateSongInput, Song as SongType, UpdateSongInput } from '../graphql';
+import {
+  CreateSongInput,
+  Song as SongType,
+  UpdateSongInput,
+  UpdateResult,
+} from '../graphql';
 
 import { UpdateSongDto } from './dto/update-song.dto';
 
@@ -42,9 +45,6 @@ export class SongsResolver {
     @Args('id') id: number,
     @Args('updateSongInput') args: UpdateSongInput,
   ): Promise<UpdateResult> {
-    console.log('==============================================');
-    console.log(id, args);
-
     const updatingData: UpdateSongDto = {
       id: id,
       title: args.title!,
@@ -53,9 +53,10 @@ export class SongsResolver {
     };
 
     const result = await this.songsService.update(id, updatingData);
+    const updateResult: UpdateResult = {
+      affected: result.affected!,
+    };
 
-    console.log(result);
-
-    return result;
+    return updateResult;
   }
 }
