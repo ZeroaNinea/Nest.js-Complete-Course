@@ -10,11 +10,11 @@ type Query {
 
 type Mutation {
   createSong(createSongInput: CreateSongInput!): Song!
-  updateSong(id: ID!, updateSongInput: updateSongInput!): UpdateResult!
+  updateSong(id: ID!, updateSongInput: UpdateSongInput!): UpdateResult!
   deleteSong(id: ID!): DeleteResult
 }
 
-input createSongInput {
+input CreateSongInput {
   title: String!
 }
 
