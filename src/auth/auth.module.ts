@@ -28,7 +28,7 @@ import { ApiKeyStrategy } from './api-key.strategy';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
-        secretOrKey: configService.get<string>('JWT_SECRET') || '',
+        secret: configService.get<string>('JWT_SECRET') || '',
         signOptions: { expiresIn: '1d' },
       }),
     }),

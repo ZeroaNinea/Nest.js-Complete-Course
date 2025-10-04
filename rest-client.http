@@ -4,7 +4,7 @@ GET http://localhost:3000/
 ### Create New Song
 POST http://localhost:3000/songs
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hcnRpbkBnbWFpbC5jb20iLCJ1c2VySWQiOjIsImFydGlzdElkIjoxLCJpYXQiOjE3NTg3MjQxNDYsImV4cCI6MTc1ODgxMDU0Nn0.3y9sjDxwkhFGSi2hkLC4C0CurW0qLNndYMiUELWyE4s
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hcnRpbkBnbWFpbC5jb20iLCJ1c2VySWQiOjcsImFydGlzdElkIjozLCJpYXQiOjE3NTk1NzM3NTMsImV4cCI6MTc1OTY2MDE1M30.DstfmnNirL7aqy5F3fBQXGYKPSyUXldKBcwMBCrssqg
 
 {
   "title": "Animals",
