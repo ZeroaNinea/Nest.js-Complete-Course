@@ -16,6 +16,7 @@ import { AuthController } from './auth.controller';
 import { UserService } from '../user/user.service';
 import { ArtistsService } from '../artists/artists.service';
 import { ApiKeyStrategy } from './api-key.strategy';
+import { AuthResolver } from './auth.resolver';
 
 @Module({
   imports: [
@@ -41,6 +42,7 @@ import { ApiKeyStrategy } from './api-key.strategy';
     UuidService,
     ApiKeyStrategy,
     ConfigService,
+    AuthResolver,
   ],
   controllers: [AuthController],
   exports: [AuthService],
