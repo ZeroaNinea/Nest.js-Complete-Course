@@ -1,11 +1,22 @@
 type User {
   id: ID!
+  firstName: String!
+  lastName: String!
   email: String!
   password: String!
   isEmailVerified: Boolean!
   is2faEnabled: Boolean!
   is2faVerified: Boolean!
   apiKey: String!
+}
+
+type Mutation {
+  signup(signupInput: SignupInput!): SignupResponse!
+}
+
+input SignupInput {
   firstName: String!
   lastName: String!
+  email: String!
+  password: String!
 }
