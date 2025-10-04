@@ -24,6 +24,10 @@ input CreateSongInput {
 
 input UpdateSongInput {
   title: String
+  artists: [Int!]
+  releasedDate: String
+  duration: String
+  lyrics: String
 }
 
 type UpdateResult {

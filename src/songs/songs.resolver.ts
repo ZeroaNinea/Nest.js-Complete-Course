@@ -1,9 +1,13 @@
 import { Resolver, Query, Args, Mutation } from '@nestjs/graphql';
 
+import { UpdateResult } from 'typeorm';
+
 import { SongsService } from './songs.service';
 
 import { Song } from '../common/entities/song.entity';
 import { CreateSongInput, Song as SongType } from '../graphql';
+
+import { UpdateSongDto } from './dto/update-song.dto';
 
 @Resolver()
 export class SongsResolver {
@@ -31,5 +35,13 @@ export class SongsResolver {
     };
 
     return songTypeResult;
+  }
+
+  @Mutation('updateSong')
+  async updateSong(
+    @Args('updateSongInput') args: UpdateSongDto,
+    @Args('id') id: number,
+  ): Promise<UpdateResult> {
+    return this.songsService.update(id, args);
   }
 }
