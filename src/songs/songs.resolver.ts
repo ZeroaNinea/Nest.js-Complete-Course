@@ -1,4 +1,5 @@
 import { Resolver, Query, Args, Mutation } from '@nestjs/graphql';
+import { GraphQLError } from 'graphql';
 
 import { SongsService } from './songs.service';
 
@@ -68,5 +69,18 @@ export class SongsResolver {
     return {
       affected: result.affected!,
     } as DeleteResult;
+  }
+
+  @Query('error')
+  getError(@Args('error') error: boolean = true): string {
+    if (error) {
+      throw new GraphQLError('Error', {
+        extensions: {
+          code: 'ERROR',
+        },
+      });
+    }
+
+    return '';
   }
 }

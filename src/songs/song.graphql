@@ -6,6 +6,7 @@ type Song {
 type Query {
   songs: [Song!]!
   song(id: ID): Song!
+  error(error: Boolean): String
 }
 
 type Mutation {

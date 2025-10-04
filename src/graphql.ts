@@ -33,6 +33,8 @@ export abstract class IQuery {
     abstract songs(): Song[] | Promise<Song[]>;
 
     abstract song(id?: Nullable<string>): Song | Promise<Song>;
+
+    abstract error(error?: Nullable<boolean>): Nullable<string> | Promise<Nullable<string>>;
 }
 
 export abstract class IMutation {
