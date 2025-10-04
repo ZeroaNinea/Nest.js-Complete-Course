@@ -10,6 +10,10 @@ type User {
   apiKey: String!
 }
 
+type Query {
+  login(loginInput: LoginInput!): LoginResponse!
+}
+
 type Mutation {
   signup(signupInput: SignupInput!): SignupResponse!
 }
@@ -19,4 +23,17 @@ input SignupInput {
   lastName: String!
   email: String!
   password: String!
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+input SignupResponse {
+  email: String!
+}
+
+type LoginResponse {
+  token: String!
 }
