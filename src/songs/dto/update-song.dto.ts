@@ -21,12 +21,12 @@ export class UpdateSongDto {
   @IsArray()
   @IsOptional()
   @IsNumber({}, { each: true })
-  readonly artists: [Artist];
+  readonly artists?: [Artist];
 
   @IsDate()
   @IsOptional()
   @Type(() => Date)
-  readonly releasedDate: Date;
+  readonly releasedDate?: Date;
 
   @IsMilitaryTime()
   @IsOptional()

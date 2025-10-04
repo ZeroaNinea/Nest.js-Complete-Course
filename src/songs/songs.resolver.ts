@@ -5,7 +5,7 @@ import { UpdateResult } from 'typeorm';
 import { SongsService } from './songs.service';
 
 import { Song } from '../common/entities/song.entity';
-import { CreateSongInput, Song as SongType } from '../graphql';
+import { CreateSongInput, Song as SongType, UpdateSongInput } from '../graphql';
 
 import { UpdateSongDto } from './dto/update-song.dto';
 
@@ -39,9 +39,23 @@ export class SongsResolver {
 
   @Mutation('updateSong')
   async updateSong(
-    @Args('updateSongInput') args: UpdateSongDto,
     @Args('id') id: number,
+    @Args('updateSongInput') args: UpdateSongInput,
   ): Promise<UpdateResult> {
-    return this.songsService.update(id, args);
+    console.log('==============================================');
+    console.log(id, args);
+
+    const updatingData: UpdateSongDto = {
+      id: id,
+      title: args.title!,
+      duration: args.duration!,
+      lyrics: args.lyrics!,
+    };
+
+    const result = await this.songsService.update(id, updatingData);
+
+    console.log(result);
+
+    return result;
   }
 }
