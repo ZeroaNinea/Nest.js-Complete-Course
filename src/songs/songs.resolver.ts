@@ -1,4 +1,4 @@
-import { Resolver, Query } from '@nestjs/graphql';
+import { Resolver, Query, Args } from '@nestjs/graphql';
 import { SongsService } from './songs.service';
 
 @Resolver()
@@ -8,5 +8,10 @@ export class SongsResolver {
   @Query('songs')
   async getSongs() {
     return this.songsService.findAll();
+  }
+
+  @Query('song')
+  async getSong(@Args('id') id: number) {
+    return this.songsService.findOne(id);
   }
 }
