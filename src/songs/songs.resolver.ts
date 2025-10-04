@@ -1,9 +1,9 @@
 import { Resolver, Query, Args, Mutation } from '@nestjs/graphql';
 
 import { SongsService } from './songs.service';
-import { CreateSongDto } from './dto/create-song.dto';
 
 import { Song } from '../common/entities/song.entity';
+import { CreateSongDto } from './dto/create-song.dto';
 
 @Resolver()
 export class SongsResolver {

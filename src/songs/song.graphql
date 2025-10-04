@@ -15,11 +15,21 @@ type Mutation {
 }
 
 input CreateSongInput {
+  id: Int
   title: String!
+  artists: [Int]
+  releasedDate: String
+  duration: String
+  lyrics: String
 }
 
 input UpdateSongInput {
+  id: Int
   title: String
+  artists: [Int]
+  releasedDate: String
+  duration: String
+  lyrics: String
 }
 
 type UpdateResult {
