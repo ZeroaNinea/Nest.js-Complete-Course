@@ -8,6 +8,7 @@ import {
   Song as SongType,
   UpdateSongInput,
   UpdateResult,
+  DeleteResult,
 } from '../graphql';
 
 import { UpdateSongDto } from './dto/update-song.dto';
@@ -58,5 +59,14 @@ export class SongsResolver {
     };
 
     return updateResult;
+  }
+
+  @Mutation('deleteSong')
+  async deleteSong(@Args('id') id: number): Promise<DeleteResult> {
+    const result = await this.songsService.remove(id);
+
+    return {
+      affected: result.affected!,
+    } as DeleteResult;
   }
 }
