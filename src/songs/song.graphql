@@ -5,4 +5,18 @@ type Song {
 
 type Query {
   songs: [Song!]!
+  song(id: ID): Song!
+}
+
+type Mutation {
+  createSong(createSongInput: CreateSongInput!): Song!
+  updateSong(id: ID!, updateSongInput: updateSongInput!): UpdateResult!
+}
+
+input createSongInput {
+  title: String!
+}
+
+input UpdateSongInput {
+  title: String
 }
