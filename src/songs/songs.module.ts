@@ -7,6 +7,7 @@ import { Artist } from '../common/entities/artist.entity';
 import { SongsController } from './songs.controller';
 import { SongsService } from './songs.service';
 import { connection } from '../common/constants/connection';
+import { SongsResolver } from './songs.resolver';
 
 // const mockSongsService = {
 //   findAll() {
@@ -31,6 +32,7 @@ import { connection } from '../common/constants/connection';
       provide: 'CONNECTION',
       useValue: connection,
     },
+    SongsResolver,
   ],
 })
 export class SongsModule {}
