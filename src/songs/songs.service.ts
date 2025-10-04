@@ -15,6 +15,8 @@ import { Artist } from '../common/entities/artist.entity';
 import { CreateSongDto } from './dto/create-song.dto';
 import { UpdateSongDto } from './dto/update-song.dto';
 
+import { CreateSongInput } from '../graphql';
+
 @Injectable()
 // {
 //   scope: Scope.TRANSIENT,
@@ -42,6 +44,14 @@ export class SongsService {
     });
 
     newSong.artists = artists;
+
+    return await this.songsRepository.save(newSong);
+  }
+
+  async createGraph(song: CreateSongInput): Promise<Song> {
+    const newSong = new Song();
+
+    newSong.title = song.title;
 
     return await this.songsRepository.save(newSong);
   }
