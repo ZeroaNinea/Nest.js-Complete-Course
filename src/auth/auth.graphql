@@ -20,13 +20,13 @@ type Mutation {
 }
 
 type Profile {
-  id: ID!
-  firstName: String!
-  lastName: String!
-  email: String!
-  isEmailVerified: Boolean!
-  is2faEnabled: Boolean!
-  is2faVerified: Boolean!
+  id: ID
+  firstName: String
+  lastName: String
+  email: String
+  isEmailVerified: Boolean
+  is2faEnabled: Boolean
+  is2faVerified: Boolean
 }
 
 input SignupInput {

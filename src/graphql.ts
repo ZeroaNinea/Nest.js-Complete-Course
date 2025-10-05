@@ -71,13 +71,13 @@ export abstract class IMutation {
 }
 
 export class Profile {
-    id: string;
-    firstName: string;
-    lastName: string;
-    email: string;
-    isEmailVerified: boolean;
-    is2faEnabled: boolean;
-    is2faVerified: boolean;
+    id?: Nullable<string>;
+    firstName?: Nullable<string>;
+    lastName?: Nullable<string>;
+    email?: Nullable<string>;
+    isEmailVerified?: Nullable<boolean>;
+    is2faEnabled?: Nullable<boolean>;
+    is2faVerified?: Nullable<boolean>;
 }
 
 export class SignupResponse {

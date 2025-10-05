@@ -1,4 +1,5 @@
 import { UseGuards } from '@nestjs/common';
+import { Request } from 'express';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { GraphQLError } from 'graphql';
 
@@ -56,22 +57,21 @@ export class AuthResolver {
 
   @Query('profile')
   @UseGuards(GraphQLAuthGuard)
-  getProfile(parent, args, contextValue, info): Promise<Profile> {
-    console.log(parent);
-    console.log(args);
-    console.log(contextValue);
-    console.log(info);
+  getProfile(
+    parent,
+    args,
+    contextValue: { req: { user: Profile } },
+    info,
+  ): Profile {
+    console.log(parent, args, info);
 
-    return new Promise((resolve) => {
-      resolve({
-        id: '1',
-        firstName: 'John',
-        lastName: 'Doe',
-        email: 'YdWY8@example.com',
-        isEmailVerified: true,
-        is2faEnabled: false,
-        is2faVerified: false,
+    const user = contextValue.req.user;
+    if (!user) {
+      throw new GraphQLError('Unauthorized', {
+        extensions: { code: 'UNAUTHORIZED' },
       });
-    });
+    }
+
+    return user;
   }
 }

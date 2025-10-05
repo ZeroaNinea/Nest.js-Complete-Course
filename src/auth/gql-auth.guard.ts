@@ -1,11 +1,10 @@
+import { AuthenticationError } from '@nestjs/apollo';
 import { ExecutionContext, Injectable } from '@nestjs/common';
 import { ExecutionContextHost } from '@nestjs/core/helpers/execution-context-host';
-import { AuthGuard } from '@nestjs/passport';
 import { GqlExecutionContext } from '@nestjs/graphql';
+import { AuthGuard } from '@nestjs/passport';
+import { Request } from 'express';
 import { Observable } from 'rxjs';
-import { AuthenticationError } from '@nestjs/apollo';
-
-import { Profile } from '../graphql';
 
 @Injectable()
 export class GraphQLAuthGuard extends AuthGuard('jwt') {
@@ -13,16 +12,14 @@ export class GraphQLAuthGuard extends AuthGuard('jwt') {
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
     const ctx = GqlExecutionContext.create(context);
-    const result: { req: Profile } = ctx.getContext();
-
-    return super.canActivate(new ExecutionContextHost([result.req]));
+    const { req }: { req: Request } = ctx.getContext();
+    return super.canActivate(new ExecutionContextHost([req]));
   }
 
-  handleRequest<TUser = any>(err: any, user: any): TUser {
+  handleRequest<TUser = any>(err: any, user: TUser): TUser {
     if (err || !user) {
-      throw new AuthenticationError('GqlAuthGuard error');
+      throw new AuthenticationError('GqlAuthguard');
     }
-
-    return user as TUser;
+    return user;
   }
 }
