@@ -1,3 +1,4 @@
+import { UseGuards } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { GraphQLError } from 'graphql';
 
@@ -14,6 +15,7 @@ import {
   SignupResponse,
 } from '../graphql';
 import { LoginDto } from './dto/login.dto';
+import { GraphQLAuthGuard } from './gql-auth.guard';
 
 @Resolver()
 export class AuthResolver {
@@ -53,6 +55,7 @@ export class AuthResolver {
   }
 
   @Query('profile')
+  @UseGuards(GraphQLAuthGuard)
   getProfile(parent, args, contextValue, info): Promise<Profile> {
     console.log(parent);
     console.log(args);
