@@ -51,11 +51,23 @@ export class User {
 export abstract class IQuery {
     abstract login(loginInput: LoginInput): LoginResponse | Promise<LoginResponse>;
 
+    abstract profile(): Profile | Promise<Profile>;
+
     abstract songs(): Song[] | Promise<Song[]>;
 
     abstract song(id?: Nullable<string>): Song | Promise<Song>;
 
     abstract error(error?: Nullable<boolean>): Nullable<string> | Promise<Nullable<string>>;
+}
+
+export class Profile {
+    id: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    isEmailVerified: boolean;
+    is2faEnabled: boolean;
+    is2faVerified: boolean;
 }
 
 export abstract class IMutation {

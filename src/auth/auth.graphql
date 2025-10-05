@@ -12,6 +12,17 @@ type User {
 
 type Query {
   login(loginInput: LoginInput!): LoginResponse!
+  profile: Profile!
+}
+
+type Profile {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  email: String!
+  isEmailVerified: Boolean!
+  is2faEnabled: Boolean!
+  is2faVerified: Boolean!
 }
 
 type Mutation {
