@@ -1,5 +1,6 @@
-import { Resolver, Query, Args, Mutation } from '@nestjs/graphql';
+import { Resolver, Query, Args, Mutation, Subscription } from '@nestjs/graphql';
 import { GraphQLError } from 'graphql';
+import { PubSub } from 'graphql-subscriptions';
 
 import { SongsService } from './songs.service';
 
@@ -13,6 +14,8 @@ import {
 } from '../graphql';
 
 import { UpdateSongDto } from './dto/update-song.dto';
+
+const pubSub = new PubSub();
 
 @Resolver()
 export class SongsResolver {
@@ -82,5 +85,10 @@ export class SongsResolver {
     }
 
     return '';
+  }
+
+  @Subscription('songCreated')
+  songCreated() {
+    return pubSub.asyncIterableIterator('songCreated');
   }
 }

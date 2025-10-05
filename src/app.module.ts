@@ -89,6 +89,7 @@ import { EventsModule } from './events/events.module';
         path: path.join(process.cwd(), 'src/graphql.ts'),
         outputAs: 'class',
       },
+      installSubscriptionHandlers: true,
     }),
     SongsModule,
     AuthModule,
