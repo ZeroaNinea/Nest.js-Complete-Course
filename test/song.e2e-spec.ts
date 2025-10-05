@@ -75,6 +75,12 @@ describe('AppController (e2e)', () => {
   });
 
   it('(Query) it should get all songs with songs query', async () => {
+    //   title: String!
+    // artists: [Int!]
+    // releasedDate: String!
+    // duration: String!
+    // lyrics: String!
+
     const newSong = await createSong({
       title: 'You for me',
       artists: [1, 3],
