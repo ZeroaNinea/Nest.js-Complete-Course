@@ -1,7 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { UuidService } from 'nestjs-uuid';
 
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule } from '@nestjs/config';
@@ -17,15 +16,11 @@ import { Artist } from '../src/common/entities/artist.entity';
 import { Playlist } from '../src/common/entities/playlist.entity';
 import { Song } from '../src/common/entities/song.entity';
 
-import { ApiKeyStrategy } from '../src/auth/api-key.strategy';
-
-import { AuthModule } from '../src/auth/auth.module';
-import { AuthService } from '../src/auth/auth.service';
-import { UserService } from '../src/user/user.service';
-import { JwtStrategy } from '../src/auth/jwt.strategy';
-import { ArtistsService } from '../src/artists/artists.service';
+import { SongsModule } from '../src/songs/songs.module';
 
 import { CreateSongInput } from '../src/graphql';
+import { SongsResolver } from '../src/songs/songs.resolver';
+import { SongsService } from '../src/songs/songs.service';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication<App>;
@@ -62,18 +57,10 @@ describe('AppController (e2e)', () => {
             signOptions: { expiresIn: '1d' },
           }),
         }),
-        TypeOrmModule.forFeature([User, Artist]),
-        AuthModule,
+        TypeOrmModule.forFeature([User, Artist, Song]),
+        SongsModule,
       ],
-      providers: [
-        AuthService,
-        UserService,
-        JwtStrategy,
-        ArtistsService,
-        UuidService,
-        ApiKeyStrategy,
-        ConfigService,
-      ],
+      providers: [SongsResolver, SongsService],
     }).compile();
 
     app = moduleFixture.createNestApplication();
