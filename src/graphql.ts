@@ -51,6 +51,8 @@ export class User {
 export abstract class IQuery {
     abstract login(loginInput: LoginInput): LoginResponse | Promise<LoginResponse>;
 
+    abstract profile(): Profile | Promise<Profile>;
+
     abstract songs(): Song[] | Promise<Song[]>;
 
     abstract song(id?: Nullable<string>): Song | Promise<Song>;
@@ -60,8 +62,6 @@ export abstract class IQuery {
 
 export abstract class IMutation {
     abstract signup(signupInput: SignupInput): SignupResponse | Promise<SignupResponse>;
-
-    abstract profile(): Profile | Promise<Profile>;
 
     abstract createSong(createSongInput: CreateSongInput): Song | Promise<Song>;
 

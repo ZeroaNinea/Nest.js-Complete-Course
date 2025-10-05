@@ -12,11 +12,11 @@ type User {
 
 type Query {
   login(loginInput: LoginInput!): LoginResponse!
+  profile: Profile!
 }
 
 type Mutation {
   signup(signupInput: SignupInput!): SignupResponse!
-  profile: Profile!
 }
 
 type Profile {
