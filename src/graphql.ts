@@ -93,6 +93,10 @@ export class Song {
     title?: Nullable<string>;
 }
 
+export abstract class ISubscription {
+    abstract songCreated(): Song | Promise<Song>;
+}
+
 export class UpdateResult {
     affected: number;
 }
