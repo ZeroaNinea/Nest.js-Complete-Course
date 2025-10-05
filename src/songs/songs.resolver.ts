@@ -42,6 +42,8 @@ export class SongsResolver {
       title: result.title,
     };
 
+    await pubSub.publish('songCreated', { songCreated: songTypeResult });
+
     return songTypeResult;
   }
 
