@@ -46,6 +46,7 @@
     "class-validator": "^0.14.2",
     "dotenv": "^17.2.2",
     "graphql": "^16.11.0",
+    "graphql-subscriptions": "^3.0.0",
     "joi": "^18.0.1",
     "nestjs-typeorm-paginate": "^4.1.0",
     "nestjs-uuid": "^0.1.4",
