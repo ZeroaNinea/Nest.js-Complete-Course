@@ -51,13 +51,23 @@ export class User {
 export abstract class IQuery {
     abstract login(loginInput: LoginInput): LoginResponse | Promise<LoginResponse>;
 
-    abstract profile(): Profile | Promise<Profile>;
-
     abstract songs(): Song[] | Promise<Song[]>;
 
     abstract song(id?: Nullable<string>): Song | Promise<Song>;
 
     abstract error(error?: Nullable<boolean>): Nullable<string> | Promise<Nullable<string>>;
+}
+
+export abstract class IMutation {
+    abstract signup(signupInput: SignupInput): SignupResponse | Promise<SignupResponse>;
+
+    abstract profile(): Profile | Promise<Profile>;
+
+    abstract createSong(createSongInput: CreateSongInput): Song | Promise<Song>;
+
+    abstract updateSong(id: string, updateSongInput: UpdateSongInput): UpdateResult | Promise<UpdateResult>;
+
+    abstract deleteSong(id: string): Nullable<DeleteResult> | Promise<Nullable<DeleteResult>>;
 }
 
 export class Profile {
@@ -68,16 +78,6 @@ export class Profile {
     isEmailVerified: boolean;
     is2faEnabled: boolean;
     is2faVerified: boolean;
-}
-
-export abstract class IMutation {
-    abstract signup(signupInput: SignupInput): SignupResponse | Promise<SignupResponse>;
-
-    abstract createSong(createSongInput: CreateSongInput): Song | Promise<Song>;
-
-    abstract updateSong(id: string, updateSongInput: UpdateSongInput): UpdateResult | Promise<UpdateResult>;
-
-    abstract deleteSong(id: string): Nullable<DeleteResult> | Promise<Nullable<DeleteResult>>;
 }
 
 export class SignupResponse {
