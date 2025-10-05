@@ -53,7 +53,12 @@ export class AuthResolver {
   }
 
   @Query('profile')
-  getProfile(): Promise<Profile> {
+  getProfile(parent, args, contextValue, info): Promise<Profile> {
+    console.log(parent);
+    console.log(args);
+    console.log(contextValue);
+    console.log(info);
+
     return new Promise((resolve) => {
       resolve({
         id: '1',
