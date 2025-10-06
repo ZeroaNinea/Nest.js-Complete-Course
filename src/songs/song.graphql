@@ -11,7 +11,7 @@ directive @cacheControl(
 
 type Song {
   id: ID!
-  title: String
+  title: String @cacheControl(maxAge: 30)
 }
 
 type Query {
