@@ -14,6 +14,9 @@ import { UuidModule } from 'nestjs-uuid';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver } from '@nestjs/apollo';
 
+import { ApolloServerPluginCacheControl } from '@apollo/server/plugin/cacheControl';
+import ApolloServerPluginResponseCache from '@apollo/server-plugin-response-cache';
+
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 
@@ -84,11 +87,17 @@ import { EventsModule } from './events/events.module';
     }),
     GraphQLModule.forRoot({
       driver: ApolloDriver,
+      autoSchemaFile: path.join(process.cwd(), 'src/schema.gql'),
       typePaths: ['./**/*.graphql'],
       definitions: {
         path: path.join(process.cwd(), 'src/graphql.ts'),
         outputAs: 'class',
       },
+      plugins: [
+        ApolloServerPluginCacheControl({ defaultMaxAge: 5 }),
+        ApolloServerPluginResponseCache(),
+      ],
+      cache: 'bounded',
       installSubscriptionHandlers: true,
     }),
     SongsModule,
